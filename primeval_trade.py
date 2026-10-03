@@ -7,6 +7,8 @@ and 4 inherited mutations. Win is a 60% Entombed of that species.
 
 from __future__ import annotations
 
+import asyncio
+import functools
 import json
 import os
 import random
@@ -20,6 +22,18 @@ from discord import ui
 G = {}
 STATE_PATH = "primeval_trade.json"
 _LOCK = threading.RLock()
+_ASYNC_LOCK = asyncio.Lock()
+
+
+def _serial(fn):
+    """Run state-moving handlers one at a time so concurrent clicks can't double-spend a card."""
+
+    @functools.wraps(fn)
+    async def wrapper(*args, **kwargs):
+        async with _ASYNC_LOCK:
+            return await fn(*args, **kwargs)
+
+    return wrapper
 
 TRADE_CHANNEL_ID = 1543461110085066913
 TRADE_CHANNEL_NAMES = (
@@ -119,6 +133,37 @@ def _balance(steam):
         return int(getter(steam) or 0)
     except Exception:
         return 0
+
+
+def _charge(steam, discord_id, amount):
+    # charge_steam_tokens(steam, discord_id, cost) returns None on failure and the
+    # new balance (which can be 0, i.e. falsy) on success.
+    charge = _fn("charge_steam_tokens")
+    if not charge:
+        return False
+    try:
+        return charge(steam, discord_id, int(amount)) is not None
+    except Exception as exc:
+        print(f"[TRADE] charge failed: {exc}")
+        return False
+
+
+def _credit(steam, discord_id, amount):
+    # The bot exposes no credit helper, so add through get/set (sync, no await between).
+    getter = _fn("get_steam_token_balance")
+    setter = _fn("set_steam_token_balance")
+    if not getter or not setter or not steam:
+        return False
+    try:
+        setter(steam, discord_id or 0, int(getter(steam) or 0) + int(amount))
+        return True
+    except Exception as exc:
+        print(f"[TRADE] credit failed ({amount} tokens owed to {steam}): {exc}")
+        return False
+
+
+def _wallet_ready():
+    return bool(_fn("charge_steam_tokens") and _fn("set_steam_token_balance") and _fn("get_steam_token_balance"))
 
 
 def _shop_price(species):
@@ -1350,6 +1395,7 @@ async def show_my_cards(interaction):
         )
 
 
+@_serial
 async def start_listing(interaction, slot_id, price_raw=None, mode=MODE_TOKENS):
     steam = await _need_linked(interaction)
     if not steam:
@@ -1464,6 +1510,7 @@ async def _close_listing(listing_id, sold=False):
     return row
 
 
+@_serial
 async def unlist_listing(interaction, listing_id):
     state = _load()
     row = (state.get("listings") or {}).get(str(listing_id) or "")
@@ -1493,6 +1540,7 @@ async def unlist_listing(interaction, listing_id):
     )
 
 
+@_serial
 async def buy_listing(interaction, listing_id):
     steam = await _need_linked(interaction)
     if not steam:
@@ -1508,7 +1556,7 @@ async def buy_listing(interaction, listing_id):
             ephemeral=True,
         )
         return
-    if int(row.get("seller_discord") or 0) == int(interaction.user.id):
+    if int(row.get("seller_discord") or 0) == int(interaction.user.id) or steam == str(row.get("seller_steam") or ""):
         await interaction.response.send_message("You cannot buy your own card.", ephemeral=True)
         return
     seller_steam = str(row.get("seller_steam") or "")
@@ -1539,16 +1587,14 @@ async def buy_listing(interaction, listing_id):
             ephemeral=True,
         )
         return
-    charge = _fn("charge_steam_tokens")
-    credit = _fn("credit_steam_tokens") or _fn("add_steam_tokens")
-    if not charge or not credit:
+    if not _wallet_ready():
         await _audit(
             interaction.client, "trade", interaction.user, steam=steam, ok=False,
             extra=listing_id, tokens=price, msg="Wallet helpers down on listing buy",
         )
         await interaction.followup.send("Wallet helpers are down. Try again later.", ephemeral=True)
         return
-    if not charge(steam, price):
+    if not _charge(steam, interaction.user.id, price):
         await _audit(
             interaction.client, "trade", interaction.user, steam=steam, ok=False,
             extra=listing_id, tokens=price, msg="Charge failed — nothing moved",
@@ -1563,7 +1609,7 @@ async def buy_listing(interaction, listing_id):
     moved["capturedAt"] = int(time.time())
     ok, err = await write_slot(steam, moved)
     if not ok:
-        credit(steam, price)
+        _credit(steam, interaction.user.id, price)
         await _audit(
             interaction.client, "trade", interaction.user, steam=steam, ok=False,
             extra=listing_id, slot=slot_id, prize=new_id, tokens=price,
@@ -1572,8 +1618,27 @@ async def buy_listing(interaction, listing_id):
         )
         await interaction.followup.send(f"Could not write your vault. Tokens refunded.\n{err}", ephemeral=True)
         return
-    await remove_slot(seller_steam, slot_id)
-    credit(seller_steam, price)
+    removed_ok, remove_err = await remove_slot(seller_steam, slot_id)
+    if not removed_ok:
+        # Seller still holds the card; undo the buyer's copy so it isn't duplicated.
+        await remove_slot(steam, new_id)
+        _credit(steam, interaction.user.id, price)
+        await _audit(
+            interaction.client, "trade", interaction.user, steam=steam, ok=False,
+            extra=listing_id, slot=slot_id, prize=new_id, tokens=price,
+            refunded=price, species=slot.get("species"),
+            msg=f"Seller slot removal failed, buyer copy removed and tokens refunded: {remove_err}",
+        )
+        await interaction.followup.send(
+            f"Could not take the card from the seller. Tokens refunded.\n{remove_err}",
+            ephemeral=True,
+        )
+        return
+    if not _credit(seller_steam, int(row.get("seller_discord") or 0), price):
+        await _audit(
+            interaction.client, "trade", interaction.user, steam=seller_steam, ok=False,
+            extra=listing_id, tokens=price, msg=f"SELLER PAYOUT FAILED ({price} tokens owed)",
+        )
     await _close_listing(listing_id, sold=True)
     try:
         await interaction.message.edit(content=f"Sold to {interaction.user.mention}.", view=None)
@@ -1735,6 +1800,7 @@ async def begin_card_offer(interaction, listing_id):
     await pick_slot(interaction, "offer_card", extra=str(listing_id))
 
 
+@_serial
 async def submit_card_offer(interaction, listing_id, slot_id):
     steam = await _need_linked(interaction)
     if not steam:
@@ -1800,6 +1866,7 @@ async def _take_listing_offer(interaction, offer_id):
     return row, listing
 
 
+@_serial
 async def decline_listing_offer(interaction, offer_id):
     row, listing = await _take_listing_offer(interaction, offer_id)
     if not row:
@@ -1823,6 +1890,7 @@ async def decline_listing_offer(interaction, offer_id):
     )
 
 
+@_serial
 async def accept_listing_offer(interaction, offer_id):
     row, listing = await _take_listing_offer(interaction, offer_id)
     if not row:
@@ -1845,8 +1913,7 @@ async def accept_listing_offer(interaction, offer_id):
     kind = str(row.get("kind") or "")
     if kind == "tokens":
         tokens = int(row.get("tokens") or 0)
-        charge = _fn("charge_steam_tokens")
-        credit = _fn("credit_steam_tokens") or _fn("add_steam_tokens")
+        buyer_discord = int(row.get("from_discord") or 0)
         if _balance(buyer_steam) < tokens:
             await _audit(
                 interaction.client, "listing_offer", interaction.user, steam=buyer_steam, ok=False,
@@ -1855,17 +1922,12 @@ async def accept_listing_offer(interaction, offer_id):
             )
             await interaction.followup.send("They no longer have enough tokens.", ephemeral=True)
             return
-        if not charge or not credit or not charge(buyer_steam, tokens):
+        if not _wallet_ready() or not _charge(buyer_steam, buyer_discord, tokens):
             await _audit(
                 interaction.client, "listing_offer", interaction.user, steam=buyer_steam, ok=False,
                 extra=offer_id, tokens=tokens, msg="Accept failed — token charge",
             )
             await interaction.followup.send("Could not take their tokens. Offer still open.", ephemeral=True)
-            state = _load()
-            offer = (state.get("listing_offers") or {}).get(str(offer_id) or "")
-            if offer:
-                offer["open"] = True
-                _save(state)
             return
         new_id = _new_id("tr")
         moved = dict(listed)
@@ -1875,8 +1937,7 @@ async def accept_listing_offer(interaction, offer_id):
         moved["capturedAt"] = int(time.time())
         ok, err = await write_slot(buyer_steam, moved)
         if not ok:
-            if credit:
-                credit(buyer_steam, tokens)
+            _credit(buyer_steam, buyer_discord, tokens)
             await _audit(
                 interaction.client, "listing_offer", interaction.user, steam=buyer_steam, ok=False,
                 extra=offer_id, tokens=tokens, refunded=tokens, prize=new_id,
@@ -1884,8 +1945,26 @@ async def accept_listing_offer(interaction, offer_id):
             )
             await interaction.followup.send(f"Could not move the card. Tokens refunded.\n{err}", ephemeral=True)
             return
-        await remove_slot(seller_steam, listed_id)
-        credit(seller_steam, tokens)
+        removed_ok, remove_err = await remove_slot(seller_steam, listed_id)
+        if not removed_ok:
+            await remove_slot(buyer_steam, new_id)
+            _credit(buyer_steam, buyer_discord, tokens)
+            await _audit(
+                interaction.client, "listing_offer", interaction.user, steam=seller_steam, ok=False,
+                extra=offer_id, tokens=tokens, refunded=tokens, prize=new_id,
+                species=listed.get("species"),
+                msg=f"Accept: poster slot removal failed, copy removed and tokens refunded: {remove_err}",
+            )
+            await interaction.followup.send(
+                f"Could not take your posted card. Nothing moved.\n{remove_err}",
+                ephemeral=True,
+            )
+            return
+        if not _credit(seller_steam, int(listing.get("seller_discord") or 0), tokens):
+            await _audit(
+                interaction.client, "listing_offer", interaction.user, steam=seller_steam, ok=False,
+                extra=offer_id, tokens=tokens, msg=f"SELLER PAYOUT FAILED ({tokens} tokens owed)",
+            )
         state = _load()
         offer = (state.get("listing_offers") or {}).get(str(offer_id) or "")
         if offer:
@@ -1946,8 +2025,20 @@ async def accept_listing_offer(interaction, offer_id):
         )
         await interaction.followup.send(f"Could not move their card. Nothing finished.\n{err}", ephemeral=True)
         return
-    await remove_slot(seller_steam, listed_id)
-    await remove_slot(buyer_steam, offer_slot_id)
+    removed_ok, remove_err = await remove_slot(seller_steam, listed_id)
+    if not removed_ok:
+        await remove_slot(buyer_steam, to_buyer_id)
+        await remove_slot(seller_steam, to_seller_id)
+        await interaction.followup.send(f"Could not finish the swap. Nothing moved.\n{remove_err}", ephemeral=True)
+        return
+    removed_ok, remove_err = await remove_slot(buyer_steam, offer_slot_id)
+    if not removed_ok:
+        # Put the poster's card back so it isn't lost while the offerer keeps both.
+        await write_slot(seller_steam, listed)
+        await remove_slot(buyer_steam, to_buyer_id)
+        await remove_slot(seller_steam, to_seller_id)
+        await interaction.followup.send(f"Could not finish the swap. Nothing moved.\n{remove_err}", ephemeral=True)
+        return
     state = _load()
     offer = (state.get("listing_offers") or {}).get(str(offer_id) or "")
     if offer:
@@ -1988,6 +2079,7 @@ async def _mark_listing_sold(listing, buyer):
         pass
 
 
+@_serial
 async def start_offer(interaction, slot_id, member):
     steam = await _need_linked(interaction)
     if not steam:
@@ -2055,11 +2147,17 @@ async def _take_offer(interaction, offer_id, accept):
     if int(row.get("to_discord") or 0) != int(interaction.user.id):
         await interaction.response.send_message("This offer is not for you.", ephemeral=True)
         return None
+    if time.time() - int(row.get("created_at") or 0) > 600:
+        row["open"] = False
+        _save(state)
+        await interaction.response.send_message("That offer expired.", ephemeral=True)
+        return None
     row["open"] = False
     _save(state)
     return row
 
 
+@_serial
 async def decline_offer(interaction, offer_id):
     row = await _take_offer(interaction, offer_id, False)
     if not row:
@@ -2072,6 +2170,7 @@ async def decline_offer(interaction, offer_id):
     )
 
 
+@_serial
 async def accept_offer(interaction, offer_id):
     row = await _take_offer(interaction, offer_id, True)
     if not row:
@@ -2104,7 +2203,20 @@ async def accept_offer(interaction, offer_id):
         )
         await interaction.followup.send(f"Could not move the card. Offer is open again.\n{err}", ephemeral=True)
         return
-    await remove_slot(row["from_steam"], row["slot_id"])
+    removed_ok, remove_err = await remove_slot(row["from_steam"], row["slot_id"])
+    if not removed_ok:
+        # Sender still holds the card; drop the recipient's copy so it isn't duplicated.
+        await remove_slot(row["to_steam"], new_id)
+        state = _load()
+        state["offers"][str(offer_id)]["open"] = True
+        _save(state)
+        await _audit(
+            interaction.client, "trade", interaction.user, steam=row.get("to_steam"), ok=False,
+            extra=offer_id, slot=row.get("slot_id"), prize=new_id,
+            species=slot.get("species"), msg=f"Sender slot removal failed, copy removed: {remove_err}",
+        )
+        await interaction.followup.send(f"Could not move the card. Offer is open again.\n{remove_err}", ephemeral=True)
+        return
     try:
         await interaction.message.edit(content="Accepted — card is in your vault.", view=None)
     except Exception:
@@ -2154,6 +2266,7 @@ async def show_gamble_confirm(interaction, slot_ids, species, female, life, inhe
     )
 
 
+@_serial
 async def run_gamble(interaction, slot_ids, species, female, life, inherited, tokens):
     steam = await _need_linked(interaction)
     if not steam:
@@ -2213,10 +2326,9 @@ async def run_gamble(interaction, slot_ids, species, female, life, inherited, to
         )
         return
     chance = win_chance_percent(cards, tokens, species)
-    charge = _fn("charge_steam_tokens")
-    credit = _fn("credit_steam_tokens") or _fn("add_steam_tokens")
+    uid = interaction.user.id
     if tokens:
-        if not charge or not charge(steam, tokens, tokens):
+        if not _wallet_ready() or not _charge(steam, uid, tokens):
             await _audit(
                 interaction.client, "gamble", interaction.user, steam=steam, ok=False,
                 species=species, tokens=tokens, chance=f"{chance}%",
@@ -2231,8 +2343,8 @@ async def run_gamble(interaction, slot_ids, species, female, life, inherited, to
         if not ok:
             for back in removed:
                 await write_slot(steam, back)
-            if tokens and credit:
-                credit(steam, tokens)
+            if tokens:
+                _credit(steam, uid, tokens)
             await _audit(
                 interaction.client, "gamble", interaction.user, steam=steam, ok=False,
                 species=species, tokens=tokens, refunded=tokens, slot=sid,
@@ -2272,8 +2384,8 @@ async def run_gamble(interaction, slot_ids, species, female, life, inherited, to
     if not ok:
         for back in removed:
             await write_slot(steam, back)
-        if tokens and credit:
-            credit(steam, tokens)
+        if tokens:
+            _credit(steam, uid, tokens)
         await _audit(
             interaction.client, "gamble", interaction.user, steam=steam, ok=False,
             species=species, gender=gender, tokens=tokens, refunded=tokens,
@@ -2310,7 +2422,7 @@ async def run_gamble(interaction, slot_ids, species, female, life, inherited, to
 async def start_gamble_test(interaction, member=None):
     from primeval_panels import can_staff, deny_staff
 
-    if interaction.guild and not can_staff(interaction.user, "gamble_test"):
+    if not can_staff(interaction.user, "gamble_test"):
         await deny_staff(interaction, "gamble_test")
         return
     target = member or interaction.user
@@ -2340,7 +2452,7 @@ async def start_gamble_test(interaction, member=None):
 async def grant_test_entomb(interaction, steam, species, female, life, inherited):
     from primeval_panels import can_staff, deny_staff
 
-    if interaction.guild and not can_staff(interaction.user, "gamble_test"):
+    if not can_staff(interaction.user, "gamble_test"):
         await deny_staff(interaction, "gamble_test")
         return
     if not _valid_gamble_muts(species, female, life, inherited):
@@ -2404,7 +2516,7 @@ async def show_trade_home(interaction):
 async def post_trade_panel(interaction):
     from primeval_panels import can_staff, deny_staff
 
-    if interaction.guild and not can_staff(interaction.user, "post_trade_panel"):
+    if not can_staff(interaction.user, "post_trade_panel"):
         await deny_staff(interaction, "post_trade_panel")
         return
     dest = await trade_channel(interaction.guild, interaction.client) or interaction.channel

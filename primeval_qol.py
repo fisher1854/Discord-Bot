@@ -259,16 +259,17 @@ async def process_waitlist(bot, counts):
     caps = _fn("SPECIES_CAPS") or {}
     if not caps:
         return
-    now = int(time.time())
-    state = _load_wait()
-    queues = state.setdefault("queues", {})
-    changed = False
     channel = bot.get_channel(LOCKS_CHANNEL_ID)
     if channel is None:
         try:
             channel = await bot.fetch_channel(LOCKS_CHANNEL_ID)
         except Exception:
             channel = None
+    now = int(time.time())
+    state = _load_wait()
+    queues = state.setdefault("queues", {})
+    changed = False
+    pings = []
 
     for species, cap in caps.items():
         cap = int(cap or 0)
@@ -296,7 +297,10 @@ async def process_waitlist(bot, counts):
         changed = True
         if channel is None:
             continue
-        mention = f"<@{head['user_id']}>"
+        pings.append((f"<@{head['user_id']}>", species, n, cap))
+    if changed:
+        _save_wait(state)
+    for mention, species, n, cap in pings:
         try:
             await channel.send(
                 f"{mention} **{species}** is OPEN `{n}/{cap}`.\n"
@@ -306,8 +310,6 @@ async def process_waitlist(bot, counts):
             )
         except Exception as exc:
             print(f"[QOL] waitlist ping failed: {exc}")
-    if changed:
-        _save_wait(state)
 
 
 def locks_wait_view():
@@ -385,12 +387,17 @@ async def process_recaps(bot, tally_state):
     status, text = await _isle_file("GET", RECAP_LOG)
     if status != 200 or not text:
         return tally_state
-    seen = int(tally_state.get("recap_log_bytes") or 0)
     raw = str(text)
+    if "recap_log_bytes" not in tally_state:
+        tally_state["recap_log_bytes"] = len(raw)
+        return tally_state
+    seen = int(tally_state.get("recap_log_bytes") or 0)
     if len(raw) < seen:
         seen = 0
     chunk = raw[seen:]
-    tally_state["recap_log_bytes"] = len(raw)
+    if chunk and not chunk.endswith("\n"):
+        chunk = chunk[: chunk.rfind("\n") + 1]
+    tally_state["recap_log_bytes"] = seen + len(chunk)
     for line in chunk.splitlines():
         line = line.strip()
         if not line.startswith("{"):
@@ -457,11 +464,13 @@ async def _build_progress_embed(user):
     flags = _progress_flags(steam)
     slots = []
     recap = None
+    vault_ok = True
     if steam:
         try:
             slots = await _read_vault_slots(steam) or []
         except Exception:
             slots = []
+            vault_ok = False
         try:
             recap = await _read_recap(steam)
         except Exception:
@@ -479,9 +488,9 @@ async def _build_progress_embed(user):
     )
     stored = bool(flags.get("stored") or has_vault or recap_saved)
     redeemed = bool(flags.get("redeemed"))
-    if recap_saved and not has_vault:
+    if recap_saved and not has_vault and vault_ok:
         redeemed = True
-    if steam:
+    if steam and vault_ok:
         mark_progress(
             steam,
             seen=seen,

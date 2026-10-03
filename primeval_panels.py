@@ -9,6 +9,7 @@ from __future__ import annotations
 import asyncio
 import json
 import time
+import uuid
 
 import discord
 from discord import ui
@@ -158,7 +159,8 @@ async def _read_vault_slots(steam):
 
 
 async def _write_vault_purchase(steam, species, female, mutations=""):
-    slot_id = f"buy-{str(steam)[-6:]}-{int(time.time())}"
+    # random suffix: two buys in the same second must not share (and overwrite) a slot id
+    slot_id = f"buy-{str(steam)[-6:]}-{int(time.time())}-{uuid.uuid4().hex[:4]}"
     gender = "Female" if female else "Male"
     payload = {
         "version": 6,
@@ -271,7 +273,7 @@ async def _write_vault_return_store(
     prime_have=10,
 ):
     """Staff recovery: put a stay-put store slot back in the player's vault."""
-    slot_id = f"recover-{str(steam)[-6:]}-{int(time.time())}"
+    slot_id = f"recover-{str(steam)[-6:]}-{int(time.time())}-{uuid.uuid4().hex[:4]}"
     gender = ""
     female_val = None
     gender_num = None
@@ -711,6 +713,9 @@ class TokenModal(ui.Modal, title="Adjust tokens"):
             await interaction.response.send_message("Discord ID and amount must be numbers.", ephemeral=True)
             return
         mode = str(self.mode.value or "add").strip().lower()
+        if mode not in ("add", "remove", "set"):
+            await interaction.response.send_message("Mode must be add, remove, or set.", ephemeral=True)
+            return
         steam = get_steam(uid) if get_steam else None
         if not steam:
             await interaction.response.send_message("That user has not linked Steam.", ephemeral=True)
@@ -722,6 +727,7 @@ class TokenModal(ui.Modal, title="Adjust tokens"):
             new = cur - amt
         else:
             new = cur + amt
+        new = max(0, new)
         if set_bal:
             set_bal(steam, uid, new)
         await interaction.response.send_message(
@@ -1272,18 +1278,32 @@ async def finish_buy(interaction, species, female, mut1, mut2):
         )
         await interaction.followup.send("Could not update your wallet. Tokens were not charged.", ephemeral=True)
         return
-    ok, err, slot_id = await _write_vault_purchase(steam, species, female, pack_mutations(mut1, mut2))
+    try:
+        ok, err, slot_id = await _write_vault_purchase(steam, species, female, pack_mutations(mut1, mut2))
+    except Exception as exc:
+        ok, err, slot_id = False, str(exc), ""
     if not ok:
         credit = _fn("credit_steam_tokens") or _fn("add_steam_tokens")
-        if credit:
-            credit(steam, interaction.user.id, cost)
+        refunded = False
+        try:
+            if credit:
+                credit(steam, interaction.user.id, cost)
+                refunded = True
+            elif get_bal and _fn("set_steam_token_balance"):
+                # no credit helper is bound in the main bot, so refund via balance set
+                _fn("set_steam_token_balance")(steam, interaction.user.id, int(get_bal(steam) or 0) + cost)
+                refunded = True
+        except Exception as exc:
+            print(f"[PANELS] buy refund failed: {exc}")
         await _vault_audit(
             interaction, "buy", steam=steam, ok=False,
             species=species, tokens=cost, slot=slot_id,
-            msg=f"Vault write failed, tokens refunded: {err}",
+            msg=(f"Vault write failed, tokens refunded: {err}" if refunded
+                 else f"Vault write failed, REFUND FAILED ({cost} tokens owed): {err}"),
         )
         await interaction.followup.send(
-            f"Tokens were refunded. Could not save the vaulted dino: {err}",
+            ("Tokens were refunded. " if refunded else f"Staff will need to refund your {cost} tokens. ")
+            + f"Could not save the vaulted dino: {err}",
             ephemeral=True,
         )
         return
@@ -1774,6 +1794,7 @@ class StaffToolsSelect(ui.Select):
 class DirectorRestartConfirmView(ui.View):
     def __init__(self):
         super().__init__(timeout=45)
+        self._used = False
 
     async def on_timeout(self):
         for item in self.children:
@@ -1784,6 +1805,10 @@ class DirectorRestartConfirmView(ui.View):
         if not can_staff(interaction.user, "restart_isle"):
             await deny_staff(interaction, "restart_isle")
             return
+        if self._used:
+            await interaction.response.send_message("Restart already scheduled.", ephemeral=True)
+            return
+        self._used = True
         for item in self.children:
             item.disabled = True
         await interaction.response.edit_message(
@@ -1792,7 +1817,10 @@ class DirectorRestartConfirmView(ui.View):
         )
         import primeval_health_board
 
-        ok, detail = await primeval_health_board.director_restart()
+        try:
+            ok, detail = await primeval_health_board.director_restart()
+        except Exception as exc:
+            ok, detail = False, f"Restart failed: {exc}"
         await _audit_game_cmd(
             interaction,
             "restart",
@@ -2014,6 +2042,7 @@ class SelfKillConfirmView(discord.ui.View):
     def __init__(self, owner_id: int):
         super().__init__(timeout=60)
         self.owner_id = owner_id
+        self._used = False
 
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         if interaction.user.id != self.owner_id:
@@ -2023,6 +2052,10 @@ class SelfKillConfirmView(discord.ui.View):
 
     @discord.ui.button(label="Yes, Slay My Character", style=discord.ButtonStyle.danger, emoji="💀")
     async def confirm_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if self._used:
+            await interaction.response.send_message("Already queued.", ephemeral=True)
+            return
+        self._used = True
         await interaction.response.defer(ephemeral=True)
         
         import primeval_isle
@@ -2041,7 +2074,7 @@ class SelfKillConfirmView(discord.ui.View):
         try:
             # 1. First attempt to pull directly from your global database function
             main_bot = interaction.client
-            getter = getattr(main_bot, "get_linked_steam_id", None)
+            getter = _fn("get_linked_steam_id") or getattr(main_bot, "get_linked_steam_id", None)
             if getter:
                 steam_id = getter(interaction.user.id)
                 if steam_id:
@@ -2073,6 +2106,7 @@ class SelfKillConfirmView(discord.ui.View):
 
         # If all 3 layers failed, decline execution safely
         if not payload["steam"] or len(payload["steam"]) != 17:
+            self._used = False
             await interaction.followup.send("❌ Error: Could not resolve your linked 17-digit Steam ID. Please ensure your account is registered via `/link_steam`.", ephemeral=True)
             return
 
@@ -2083,6 +2117,7 @@ class SelfKillConfirmView(discord.ui.View):
                 child.disabled = True
             await interaction.edit_original_response(content="✅ **Self-kill command queued.** Please stay logged out of the server for a few moments while your character is safely processed.", view=self)
         else:
+            self._used = False
             await interaction.followup.send(f"🛑 Failed to queue self-kill: {err}", ephemeral=True)
 
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.secondary)

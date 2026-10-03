@@ -69,6 +69,17 @@ async def _write_cfg(cfg):
     return await primeval_isle.write_file(AI_PATH, body)
 
 
+async def _save_or_report(interaction, cfg):
+    status, _text = await _write_cfg(cfg)
+    if status in (200, 204):
+        return True
+    await interaction.followup.send(
+        f"Could not save the AI herd config (write status {status}). Nothing changed.",
+        ephemeral=True,
+    )
+    return False
+
+
 def _demand_line(cfg: dict) -> str:
     """Human status using ecology demand targets (not a hard 10/10 cap)."""
     target_t = 0
@@ -89,12 +100,16 @@ def _demand_line(cfg: dict) -> str:
     except (TypeError, ValueError):
         target_g = 12
         
-    per_t = 0
-    per_d = int(cfg.get("perCarniDibble") or 2)
-    per_g = int(cfg.get("perCarniGalli") or 2)
-    ceiling = int(cfg.get("stabilityCeiling") or 40)
-    fill_m = max(1, int(cfg.get("fillGap") or 120) // 60)
-    death_m = max(1, int(cfg.get("deathGap") or 300) // 60)
+    def _int(key, default):
+        try:
+            return int(cfg.get(key) or default)
+        except (TypeError, ValueError):
+            return default
+
+    per_d = _int("perCarniDibble", 2)
+    ceiling = _int("stabilityCeiling", 40)
+    fill_m = max(1, _int("fillGap", 120) // 60)
+    death_m = max(1, _int("deathGap", 300) // 60)
     
     return (
         f"Demand targets: **{target_t}** Teno / **{target_d}** Dibble(Maia) / **{target_g}** Galli "
@@ -136,7 +151,8 @@ def register_slash(bot):
             cfg["perCarniDibble"] = 2
             cfg["perCarniGalli"] = 2
             cfg["stabilityCeiling"] = 40
-            await _write_cfg(cfg)
+            if not await _save_or_report(interaction, cfg):
+                return
             try:
                 import primeval_isle
 
@@ -154,7 +170,8 @@ def register_slash(bot):
             return
         if choice == "off":
             cfg["enabled"] = False
-            await _write_cfg(cfg)
+            if not await _save_or_report(interaction, cfg):
+                return
             try:
                 import primeval_isle
 

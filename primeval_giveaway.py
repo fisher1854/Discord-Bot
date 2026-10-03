@@ -160,8 +160,11 @@ def _eligible_members(guild, state, month):
     return out
 
 
-def _override_amount(state):
+def _override_amount(state, month=None):
     settings = state.get("settings") or {}
+    pinned = str(settings.get("override_month") or "")
+    if month and pinned and pinned > month:
+        return 0
     try:
         amount = int(settings.get("override_amount") or 0)
     except Exception:
@@ -170,7 +173,7 @@ def _override_amount(state):
 
 
 def _prize_for(state, month):
-    amount = _override_amount(state)
+    amount = _override_amount(state, month)
     if amount > 0:
         return amount, True
     return random.randint(MIN_PRIZE, MAX_PRIZE), False
@@ -193,7 +196,7 @@ def _winner_body(month, member, amount, pool_n, forced):
     prize_bit = (
         f"**{amount}** tokens (staff-set prize this month)"
         if forced
-        else f"**{amount}** tokens (rolled 5–20)"
+        else f"**{amount}** tokens (rolled 5â€“20)"
     )
     return (
         f"**{_month_label(month)} free-player token giveaway**\n\n"
@@ -239,12 +242,10 @@ async def run_draw(bot, *, force=False, actor=None):
         pool = _eligible_members(guild, state, month)
         if not pool:
             reason = "no Steam-linked free players were eligible"
-            message, err = await _post_events(
-                bot,
-                "Free-player token giveaway",
-                _empty_body(month, reason),
-                guild=guild,
-            )
+            try:
+                message, err = await _post_events(bot, "Free-player token giveaway", _empty_body(month, reason), guild=guild)
+            except Exception as exc:
+                message, err = None, str(exc)
             state["drawn_month"] = month
             state.setdefault("draws", {})[month] = {
                 "winner_discord": "",
@@ -273,12 +274,10 @@ async def run_draw(bot, *, force=False, actor=None):
             )
             return False, "wallet credit failed"
         body = _winner_body(month, member, amount, len(pool), forced)
-        message, err = await _post_events(
-            bot,
-            "Free-player token giveaway",
-            body,
-            guild=guild,
-        )
+        try:
+            message, err = await _post_events(bot, "Free-player token giveaway", body, guild=guild)
+        except Exception as exc:
+            message, err = None, str(exc)
         state["drawn_month"] = month
         state.setdefault("draws", {})[month] = {
             "winner_discord": str(member.id),
@@ -292,7 +291,8 @@ async def run_draw(bot, *, force=False, actor=None):
             "rerun": bool(force),
             "message_id": int(getattr(message, "id", 0) or 0),
         }
-        _consume_override(state, month)
+        if forced:
+            _consume_override(state, month)
         _save(state)
         await _audit(
             bot, "giveaway", member, steam=steam, ok=True,
@@ -346,12 +346,12 @@ def _status_text(guild):
     ]
     if override_amt > 0:
         when = f" (`{override_month}`)" if override_month else ""
-        lines.append(f"Pinned prize: **{override_amt}** tokens — this overrides the 5–20 roll{when}")
+        lines.append(f"Pinned prize: **{override_amt}** tokens â€” this overrides the 5â€“20 roll{when}")
     else:
-        lines.append(f"Prize: random **{MIN_PRIZE}–{MAX_PRIZE}** (no staff pin)")
+        lines.append(f"Prize: random **{MIN_PRIZE}â€“{MAX_PRIZE}** (no staff pin)")
     if row.get("winner_discord"):
         lines.append(
-            f"This month's winner: <@{row['winner_discord']}> · **{row.get('amount') or 0}** tokens"
+            f"This month's winner: <@{row['winner_discord']}> Â· **{row.get('amount') or 0}** tokens"
         )
     elif row.get("empty"):
         lines.append("This month's draw ran with an empty pool.")
@@ -431,7 +431,7 @@ def register_slash(bot):
                 _save(state)
             await interaction.response.send_message(
                 f"Pinned **{amount}** tokens. The next free-player giveaway uses this "
-                f"instead of the 5–20 roll (`{target}`). Winner still posts in **#events**.",
+                f"instead of the 5â€“20 roll (`{target}`). Winner still posts in **#events**.",
                 ephemeral=True,
             )
 

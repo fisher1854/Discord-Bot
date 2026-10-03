@@ -78,6 +78,14 @@ NIGHT_META = {
 
 _task = None
 _bot = None
+_OP_LOCK = None
+
+
+def _op_lock():
+    global _OP_LOCK
+    if _OP_LOCK is None:
+        _OP_LOCK = asyncio.Lock()
+    return _OP_LOCK
 
 
 def _night_blank():
@@ -313,6 +321,8 @@ async def _apply_growth(state, force=False):
         return True, "fresh"
     ok, result = await _set_growth_rate(row.get("rate") or 2.0)
     if ok:
+        state = _load()
+        row = state["growth"]
         row["last_apply_at"] = now
         row["restore_failed"] = False
         _save(state)
@@ -321,10 +331,15 @@ async def _apply_growth(state, force=False):
 
 
 async def _restore_growth(state, reason="off"):
+    state = _load()
     row = state["growth"]
+    if not row.get("enabled") and not row.get("restore_failed"):
+        return True, "already off"
     restore = float(row.get("restore") or DEFAULT_GROWTH)
     ok, result = await _set_growth_rate(restore)
     if ok:
+        state = _load()
+        row = state["growth"]
         row["enabled"] = False
         row["restore_failed"] = False
         row["last_apply_at"] = _now()
@@ -339,13 +354,19 @@ async def _restore_growth(state, reason="off"):
         )
         print("[EVENTS] growth restored", reason, result)
         return True, result
-    row["restore_failed"] = True
+    state = _load()
+    state["growth"]["restore_failed"] = True
     _save(state)
     print("[EVENTS] growth restore failed", reason, result)
     return False, result
 
 
 async def start_growth(rate, seconds, user_id=0, interaction=None):
+    async with _op_lock():
+        return await _start_growth(rate, seconds, user_id, interaction)
+
+
+async def _start_growth(rate, seconds, user_id=0, interaction=None):
     rate = float(rate)
     seconds = int(seconds)
     if rate < 1.0 or rate > 4.0 or seconds < 30 * 60 or seconds > 4 * 60 * 60:
@@ -362,6 +383,8 @@ async def start_growth(rate, seconds, user_id=0, interaction=None):
     if not ok:
         return False, f"Isle did not take the growth command. Nothing was changed.\n`{result}`"
     now = _now()
+    state = _load()
+    row = state["growth"]
     row.update({
         "enabled": True,
         "rate": rate,
@@ -404,11 +427,17 @@ async def start_growth(rate, seconds, user_id=0, interaction=None):
 
 
 async def stop_growth(user_id=0, interaction=None):
+    async with _op_lock():
+        return await _stop_growth(user_id, interaction)
+
+
+async def _stop_growth(user_id=0, interaction=None):
     state = _load()
     row = state["growth"]
     if not row.get("enabled") and not row.get("restore_failed"):
         return False, "Growth window is already OFF."
     row["started_by"] = int(user_id or row.get("started_by") or 0)
+    _save(state)
     ok, result = await _restore_growth(state, reason="manual")
     await _audit(interaction, "setgrowthmultiplier", extra="1", result=result)
     if not ok:
@@ -455,6 +484,11 @@ async def _finish_discord_event(bot, guild_id, event_id):
 
 
 async def start_night(kind, zone, user_id=0, guild=None, bot=None, interaction=None):
+    async with _op_lock():
+        return await _start_night(kind, zone, user_id, guild, bot, interaction)
+
+
+async def _start_night(kind, zone, user_id=0, guild=None, bot=None, interaction=None):
     meta = NIGHT_META.get(kind)
     if not meta:
         return False, "Unknown event."
@@ -479,6 +513,8 @@ async def start_night(kind, zone, user_id=0, guild=None, bot=None, interaction=N
         return False, f"{post_err or 'Could not find #events.'} {meta['label']} was not started."
     channel = getattr(message, "channel", None)
     event_id, event_note = await _create_discord_event(guild, kind, zone, ends_at)
+    state = _load()
+    row = state.setdefault(kind, _night_blank())
     row.update({
         "enabled": True,
         "zone": zone,
@@ -504,6 +540,11 @@ async def start_night(kind, zone, user_id=0, guild=None, bot=None, interaction=N
 
 
 async def stop_night(kind, user_id=0, bot=None):
+    async with _op_lock():
+        return await _stop_night(kind, user_id, bot)
+
+
+async def _stop_night(kind, user_id=0, bot=None):
     meta = NIGHT_META.get(kind)
     if not meta:
         return False, "Unknown event."
@@ -513,6 +554,8 @@ async def stop_night(kind, user_id=0, bot=None):
         return False, f"{meta['label']} is already OFF."
     bot = bot or _bot
     await _finish_discord_event(bot, row.get("guild_id"), row.get("discord_event_id"))
+    state = _load()
+    row = state.setdefault(kind, _night_blank())
     row["enabled"] = False
     row["started_by"] = int(user_id or row.get("started_by") or 0)
     _save(state)
@@ -864,7 +907,8 @@ async def tick(bot=None):
     state = _load()
     changed = False
     if state["growth"].get("enabled") and not growth_active(state):
-        await _restore_growth(state, reason="expired")
+        async with _op_lock():
+            await _restore_growth(state, reason="expired")
         changed = True
     elif growth_active(state):
         await _apply_growth(state)

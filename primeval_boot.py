@@ -100,43 +100,35 @@ def attach_all(bot, g):
         live.setdefault(name, 0)
     g["LIVE_HEADCOUNT"] = live
 
-    import primeval_panels
-    import primeval_tickets
-    import primeval_gate
-    import primeval_tally
-    import primeval_health_board
-    import primeval_qol
-    import primeval_patreon
-    import primeval_opening
-    import primeval_admin_audit
-    import primeval_vault_audit
-    import primeval_voice
-    import primeval_posts
-    import primeval_disboard
-    import primeval_events
-    import primeval_giveaway
-    import primeval_ai
-    import primeval_skin
-    import primeval_trade
+    # One broken optional module must not stop every module after it from being wired up.
+    import importlib
 
-    primeval_panels.bind(g)
-    primeval_tickets.bind(g)
-    primeval_gate.bind(g)
-    primeval_tally.bind(g)
-    primeval_health_board.bind(g)
-    primeval_qol.bind(g)
-    primeval_patreon.bind(g)
-    primeval_opening.bind(g)
-    primeval_admin_audit.bind(g)
-    primeval_vault_audit.bind(g)
-    primeval_voice.bind(g)
-    primeval_posts.bind(g)
-    primeval_disboard.bind(g)
-    primeval_events.bind(g)
-    primeval_giveaway.bind(g)
-    primeval_ai.bind(g)
-    primeval_skin.bind(g)
-    primeval_trade.bind(g)
+    def _load(name):
+        try:
+            return importlib.import_module(name)
+        except Exception as exc:
+            print(f"[BOOT] {name} import failed (skipped): {exc}")
+            return None
+
+    def _run(mod, fn, *args):
+        if mod is None or not hasattr(mod, fn):
+            return
+        try:
+            getattr(mod, fn)(*args)
+        except Exception as exc:
+            print(f"[BOOT] {mod.__name__}.{fn} failed: {exc}")
+
+    names = (
+        "primeval_panels", "primeval_tickets", "primeval_gate", "primeval_tally",
+        "primeval_health_board", "primeval_qol", "primeval_patreon", "primeval_opening",
+        "primeval_admin_audit", "primeval_vault_audit", "primeval_voice", "primeval_posts",
+        "primeval_disboard", "primeval_events", "primeval_giveaway", "primeval_ai",
+        "primeval_skin", "primeval_trade",
+    )
+    mods = {n: _load(n) for n in names}
+
+    for n in names:
+        _run(mods[n], "bind", g)
     # Ecology is optional until deployed to the host; must not block panel loops.
     try:
         import primeval_ecology
@@ -146,44 +138,42 @@ def attach_all(bot, g):
     except Exception as exc:
         print(f"[BOOT] ecology optional (skipped): {exc}")
 
-    primeval_panels.register_views(bot)
-    primeval_panels.register_slash(bot)
-    primeval_tickets.register_views(bot)
-    primeval_tickets.register_slash(bot)
-    primeval_gate.register_views(bot)
-    primeval_gate.register_slash(bot)
-    primeval_gate.attach(bot)
-    primeval_tally.register_slash(bot)
-    primeval_health_board.register_slash(bot)
-    primeval_patreon.register_views(bot)
-    primeval_patreon.register_slash(bot)
-    primeval_patreon.attach(bot)
-    primeval_opening.register_slash(bot)
-    primeval_voice.register_slash(bot)
-    primeval_posts.register_views(bot)
-    primeval_posts.register_slash(bot)
-    primeval_disboard.register_slash(bot)
-    primeval_events.register_views(bot)
-    primeval_events.register_slash(bot)
-    primeval_giveaway.register_slash(bot)
-    primeval_ai.register_slash(bot)
-    primeval_skin.register_views(bot)
-    primeval_skin.register_slash(bot)
-    primeval_trade.register_views(bot)
-    primeval_trade.register_slash(bot)
-    primeval_overlay.register_slash(bot)
+    # primeval_qol is bind-only; the rest register in this order.
+    for n, fns in (
+        ("primeval_panels", ("register_views", "register_slash")),
+        ("primeval_tickets", ("register_views", "register_slash")),
+        ("primeval_gate", ("register_views", "register_slash", "attach")),
+        ("primeval_tally", ("register_slash",)),
+        ("primeval_health_board", ("register_slash",)),
+        ("primeval_patreon", ("register_views", "register_slash", "attach")),
+        ("primeval_opening", ("register_slash",)),
+        ("primeval_voice", ("register_slash",)),
+        ("primeval_posts", ("register_views", "register_slash")),
+        ("primeval_disboard", ("register_slash",)),
+        ("primeval_events", ("register_views", "register_slash")),
+        ("primeval_giveaway", ("register_slash",)),
+        ("primeval_ai", ("register_slash",)),
+        ("primeval_skin", ("register_views", "register_slash")),
+        ("primeval_trade", ("register_views", "register_slash")),
+    ):
+        for fn in fns:
+            _run(mods[n], fn, bot)
+    _run(primeval_overlay, "register_slash", bot)
 
-    primeval_tally.start(bot)
-    primeval_health_board.start(bot)
-    primeval_admin_audit.start(bot)
-    primeval_vault_audit.start(bot)
-    primeval_opening.start(bot)
-    primeval_voice.attach(bot)
-    primeval_voice.start(bot)
-    primeval_disboard.start(bot)
-    primeval_events.start(bot)
-    primeval_giveaway.start(bot)
-    primeval_overlay.start(bot)
+    for n, fns in (
+        ("primeval_tally", ("start",)),
+        ("primeval_health_board", ("start",)),
+        ("primeval_admin_audit", ("start",)),
+        ("primeval_vault_audit", ("start",)),
+        ("primeval_opening", ("start",)),
+        ("primeval_voice", ("attach", "start")),
+        ("primeval_disboard", ("start",)),
+        ("primeval_events", ("start",)),
+        ("primeval_giveaway", ("start",)),
+    ):
+        for fn in fns:
+            _run(mods[n], fn, bot)
+    _run(primeval_overlay, "start", bot)
     try:
         import primeval_ecology as _eco
 

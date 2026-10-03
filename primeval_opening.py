@@ -66,8 +66,11 @@ def panel_line():
 
 
 async def apply_toggle(on, user_id=0):
+    was = event_active()
     set_enabled(on, user_id)
     await _sync_event_flag()
+    if on and was:
+        return True, "Token event is already ON."
     if on:
         await _maybe_broadcast(force=True)
     return True, "Token event ON. New special started." if on else "Token event OFF. Payouts stopped."
@@ -165,6 +168,13 @@ def set_enabled(on, user_id=0):
     with _LOCK:
         state = _load()
         was = bool(state.get("enabled"))
+        if on == was:
+            return {
+                "enabled": was,
+                "event_id": int(state.get("event_id") or 0),
+                "toggled_by": int(state.get("toggled_by") or 0),
+                "toggled_at": int(state.get("toggled_at") or 0),
+            }
         state["enabled"] = on
         state["toggled_by"] = int(user_id or 0)
         state["toggled_at"] = int(time.time())
@@ -480,10 +490,12 @@ class TokenEventView(ui.View):
     async def turn_on(self, interaction: discord.Interaction, button: ui.Button):
         if not await self._gate(interaction):
             return
+        was = event_active()
         set_enabled(True, interaction.user.id)
         await interaction.response.edit_message(embed=_staff_embed(), view=self)
         await _sync_event_flag()
-        await _maybe_broadcast(force=True)
+        if not was:
+            await _maybe_broadcast(force=True)
 
     @ui.button(label="Turn OFF", emoji="🛑", style=discord.ButtonStyle.danger)
     async def turn_off(self, interaction: discord.Interaction, button: ui.Button):

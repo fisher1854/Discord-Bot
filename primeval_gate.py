@@ -1,4 +1,4 @@
-"""Auto-assign Member on join and require Steam linking before chatting.
+﻿"""Auto-assign Member on join and require Steam linking before chatting.
 
 Hook from Primeval_Island_Bot.py the same way as the other modules:
 
@@ -214,6 +214,8 @@ async def _warn_unlinked(channel, user):
     key = f"{getattr(channel, 'id', 0)}:{user.id}"
     if now - _WARN_COOLDOWN.get(key, 0) < 45:
         return
+    for old in [k for k, ts in _WARN_COOLDOWN.items() if now - ts > 300]:
+        _WARN_COOLDOWN.pop(old, None)
     _WARN_COOLDOWN[key] = now
     try:
             send = getattr(channel, "send", None)
@@ -234,7 +236,7 @@ class WelcomeLinkView(ui.View):
 
     @ui.button(
         label="Link Steam + Discord",
-        emoji="🔗",
+        emoji="ðŸ”—",
         style=discord.ButtonStyle.success,
         custom_id="pi_gate_link",
     )
@@ -246,7 +248,7 @@ class WelcomeLinkView(ui.View):
 
 def welcome_embed():
     return discord.Embed(
-        title="🦕 Fallen Earth | Link required",
+        title="ðŸ¦• Fallen Earth | Link required",
         description=(
             "Welcome. You have the **Member** role, but you cannot chat or use voice "
             "until you link your **Steam ID** to this Discord account.\n\n"
@@ -349,7 +351,7 @@ def register_slash(bot):
             description="Post the Steam link panel new members must use",
         )
         async def welcome_panel(interaction: discord.Interaction):
-            if interaction.guild and staff_rank(interaction.user) < 4:
+            if interaction.guild is None or staff_rank(interaction.user) < 4:
                 await interaction.response.send_message(
                     "Administrator or higher can post this panel.", ephemeral=True
                 )
@@ -364,7 +366,7 @@ def register_slash(bot):
             description="Create Member/Linked roles and strip talk perms until Steam is linked",
         )
         async def setup_link_gate(interaction: discord.Interaction):
-            if staff_rank(interaction.user) < 4:
+            if interaction.guild is None or staff_rank(interaction.user) < 4:
                 await interaction.response.send_message(
                     "Administrator or higher can run this.", ephemeral=True
                 )
@@ -389,7 +391,7 @@ def register_slash(bot):
             description="Give Member to everyone; give Linked to Steam-linked members and staff",
         )
         async def sync_gate_roles(interaction: discord.Interaction):
-            if staff_rank(interaction.user) < 4:
+            if interaction.guild is None or staff_rank(interaction.user) < 4:
                 await interaction.response.send_message(
                     "Administrator or higher can run this.", ephemeral=True
                 )

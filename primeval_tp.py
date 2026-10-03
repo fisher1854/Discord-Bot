@@ -414,6 +414,7 @@ async def send_tp_request(interaction, target):
     if not ok:
         await interaction.followup.send(why, ephemeral=True)
         return
+    state = _load()  # reload: state above is stale after the slow _live() awaits
     req_id = f"t{int(time.time())}{str(interaction.user.id)[-3:]}"
     req_id = re.sub(r"[^a-z0-9]", "", req_id.lower())[:24]
     state.setdefault("requests", {})[req_id] = {
@@ -440,7 +441,8 @@ async def send_tp_request(interaction, target):
     try:
         await target.send(embed=embed, view=TpDecisionView(req_id))
     except Exception:
-        req = state["requests"].pop(req_id, None)
+        state = _load()
+        (state.get("requests") or {}).pop(req_id, None)
         _save(state)
         await interaction.followup.send(
             "Could not DM them. They need to allow DMs from server members.",
@@ -451,7 +453,7 @@ async def send_tp_request(interaction, target):
         f"Teleport request sent to {target.mention}. They have **60 seconds** to accept.",
         ephemeral=True,
     )
-    asyncio.create_task(_expire_request(interaction.client, req_id))
+    _spawn(_expire_request(interaction.client, req_id))
 
 
 async def _expire_request(bot, req_id):
@@ -517,12 +519,24 @@ async def handle_decision(interaction, req_id, act):
     )
     ok, err = await _queue_cmd_flag("tpstart", req["from_steam"], f"{req['to_steam']} {req_id}")
     if not ok:
+        state = _load()  # state is stale after the awaits above
+        req = (state.get("requests") or {}).get(req_id) or req
         req["status"] = "fail"
         _save(state)
         await _tell(interaction.client, req["from_id"], f"Isle did not start the teleport: {err}")
         await _tell(interaction.client, req["to_id"], f"Isle did not start the teleport: {err}")
         return
-    asyncio.create_task(_watch_hold(interaction.client, req_id))
+    _spawn(_watch_hold(interaction.client, req_id))
+
+
+_TASKS = set()
+
+
+def _spawn(coro):
+    # strong ref so the event loop cannot garbage-collect the task mid-run
+    task = asyncio.create_task(coro)
+    _TASKS.add(task)
+    task.add_done_callback(_TASKS.discard)
 
 
 async def _tell(bot, uid, text):

@@ -80,6 +80,11 @@ class IsleShopBot(commands.Bot):
 
     async def on_ready(self):
         print(f'Logged in as {self.user.name}')
+        # on_ready fires again on every gateway reconnect; re-running would reload the DB from
+        # disk over live state, double-start the loop and rebind the webhook port.
+        if getattr(self, "_primeval_ready_done", False):
+            return
+        self._primeval_ready_done = True
         load_database()
         
         # Attaches legacy scripts
@@ -110,14 +115,35 @@ class IsleShopBot(commands.Bot):
             print(f"[CRITICAL ERROR] Webhook server failed to bind to port 8094: {e}")
             
         # 👈 Fix spacing here! Make sure it matches the 'try' column layout above.
-        self.update_population_channels.start()
+        if not self.auto_unban_engine.is_running():
+            self.auto_unban_engine.start()
 
         
-    # --- AUTOMATED DISCORD LOGGING TASK LOOP ---
+    # --- AUTOMATED IN-GAME UNBAN TASK LOOP ---
+    # NOTE: this used to be bundled together with a second, duplicate copy of
+    # the live species tally/population-channel updater. That duplicate ran
+    # alongside primeval_tally.py's own tick loop, both editing the SAME
+    # Discord messages/channel IDs and the same primeval_tally.json file from
+    # two independent, unsynchronized loops -- and this copy had the same
+    # "fabricate a species name from unrecognized text" + "never prune
+    # LIVE_HEADCOUNT keys" bugs that were fixed in primeval_tally.py. The two
+    # loops racing/overwriting each other every ~2 minutes is what produced
+    # the corrupted tally. The duplicate tally logic has been removed here;
+    # primeval_tally.py (started via primeval_boot.attach_all) is now the
+    # single source of truth, and it shares the same LIVE_HEADCOUNT dict
+    # object with this module so the shop's species-cap checks below still
+    # see live data.
     @tasks.loop(minutes=2)
-    async def update_population_channels(self):
+    async def auto_unban_engine(self):
+        # An escaping exception would end the loop permanently, so contain it per iteration.
+        try:
+            await self._auto_unban_once()
+        except Exception as loop_err:
+            print(f"[CRITICAL CHECKER ERROR] Auto-unban loop failure: {loop_err}")
+
+    async def _auto_unban_once(self):
         await self.wait_until_ready()
-        import time  # 👈 PASTE IT RIGHT HERE!
+        import time
         
         # ======================================================================
         # ⏰ AUTOMATED IN-GAME UNBAN ENGINE 
@@ -179,164 +205,6 @@ class IsleShopBot(commands.Bot):
         except Exception as auto_unban_err:
             print(f"[CRITICAL CHECKER ERROR] Auto-unban loop failure: {auto_unban_err}")
 
-        import re, time, json as _json
-        from datetime import datetime, timezone
-        global LIVE_HEADCOUNT, SPECIES_CAPS
-        now = int(time.time())
-        stamp = "Last updated <t:%s:f> (<t:%s:R>)" % (now, now)
-        aliases = {"tyrannosaurus":"Tyrannosaurus","trex":"Tyrannosaurus","gallimimus":"Galli","galli":"Galli","allosaurus":"Allo","allo":"Allo","deinosuchus":"Deinosuchus","deino":"Deinosuchus","triceratops":"Triceratops","stegosaurus":"Stegosaurus","diabloceratops":"Diabloceratops","diablo":"Diabloceratops","austroraptor":"Austroraptor","austro":"Austroraptor","beipiaosaurus":"Beipiaosaurus","pteranodon":"Pteranodon","kentrosaurus":"Kentrosaurus","kentro":"Kentrosaurus","ceratosaurus":"Ceratosaurus","maiasaura":"Maiasaura","carnotaurus":"Carnotaurus","dilophosaurus":"Dilophosaurus","omniraptor":"Omniraptor","herrerasaurus":"Herrerasaurus","hypsilophodon":"Hypsilophodon","dryosaurus":"Dryosaurus","pachycephalosaurus":"Pachycephalosaurus","troodon":"Troodon","tenontosaurus":"Tenontosaurus"}
-        def canon(raw):
-            blob = str(raw or "")
-            picked = ""
-            cm = re.search(r"\bClass\s*:\s*([A-Za-z]+)", blob, re.I)
-            if cm: picked = cm.group(1)
-            if not picked:
-                bm = re.search(r"BP_([A-Za-z]+)", blob)
-                if bm: picked = bm.group(1)
-            if not picked and len(blob) <= 40 and "PlayerData" not in blob:
-                picked = blob.strip()
-            key = re.sub(r"[^a-z]", "", picked.lower())
-            if not key: return ""
-            if key.startswith("bp"): key = key[2:]
-            for suffix in ("character", "pawn"):
-                if key.endswith(suffix) and len(key) > len(suffix) + 4:
-                    key = key[:-len(suffix)]
-            if key in aliases: return aliases[key]
-            for name in LIVE_HEADCOUNT:
-                if re.sub(r"[^a-z]", "", str(name).lower()) == key: return str(name)
-            if len(key) >= 4: return key.upper() + key[1:]
-            return ""
-
-        counts = {k: 0 for k in LIVE_HEADCOUNT}
-        online = 0
-        spawned = 0
-        source = "RCON playerlist"
-        try:
-            from primeval_panels import _isle_file
-            st, txt = await _isle_file("GET", "/TheIsle/Binaries/Win64/ue4ss/Mods/PrimevalRedeem/Saved/census.json")
-            cen = None
-            if st == 200 and txt and str(txt).strip().startswith("{"):
-                try: cen = _json.loads(txt)
-                except Exception: cen = None
-            if not (cen and int(cen.get("capturedAt") or 0) >= now - 90):
-                await _isle_file("POST", "/TheIsle/Binaries/Win64/ue4ss/Mods/PrimevalRedeem/Saved/cmd.flag", "census 0\n")
-                await asyncio.sleep(2.2)
-                st, txt = await _isle_file("GET", "/TheIsle/Binaries/Win64/ue4ss/Mods/PrimevalRedeem/Saved/census.json")
-                if st == 200 and txt and str(txt).strip().startswith("{"):
-                    try: cen = _json.loads(txt)
-                    except Exception: cen = None
-            if cen and int(cen.get("capturedAt") or 0) >= now - 120:
-                source = "game census"
-                rows = cen.get("players") or []
-                online = int(cen.get("online") or len(rows) or 0)
-                for row in rows:
-                    if not row.get("spawned", True): continue
-                    spawned += 1
-                    mapped = canon(row.get("species") or "")
-                    if mapped: counts[mapped] = counts.get(mapped, 0) + 1
-        except Exception as e:
-            print("[TALLY] census read failed:", e)
-        if source != "game census":
-            try:
-                blob = await send_game_command("playerlist")
-                steams = []
-                for m in re.finditer(r"7656\d{13}", str(blob or "")):
-                    if m.group(0) not in steams: steams.append(m.group(0))
-                online = len(steams)
-                for steam in steams[:20]:
-                    mapped = ""
-                    try:
-                        data = await send_game_command("getplayerdata " + steam)
-                        mapped = canon(data)
-                    except Exception: mapped = ""
-                    if mapped:
-                        spawned += 1
-                        counts[mapped] = counts.get(mapped, 0) + 1
-            except Exception as e:
-                print("[TALLY] rcon failed:", e)
-
-        for k, v in counts.items(): LIVE_HEADCOUNT[k] = v
-        total = sum(int(v or 0) for v in counts.values())
-        counts = {k: int(counts.get(k, 0) or 0) for k in LIVE_HEADCOUNT}
-        lines = []
-        for name in sorted(counts, key=lambda n: (-int(counts[n] or 0), str(n))):
-            n = int(counts.get(name, 0) or 0)
-            mark = "*" if n else " "
-            lines.append("`%s` **%s** `%s`" % (mark, name, n))
-        body = "\n".join(lines) or "No tracked species yet."
-        embed = discord.Embed(title="Primeval Island - Live tally", description="%s\nPlayers connected: **%s**\nSpawned dinos: **%s**\nTotal counted: **%s**" % (stamp, online, spawned, total), color=discord.Color.dark_green(), timestamp=datetime.fromtimestamp(now, tz=timezone.utc))
-        embed.add_field(name="Species", value=body[:1020], inline=False)
-        embed.set_footer(text="Source: %s - refreshes every 2 minutes" % source)
-        
-        lock_lines = []
-        for dino, cap in SPECIES_CAPS.items():
-            cap = int(cap or 0)
-            n = int(LIVE_HEADCOUNT.get(dino, 0) or 0)
-            tag = "LOCKED" if n >= cap else "OPEN"
-            lock_lines.append("**%s** %s `%s/%s`" % (tag, dino, n, cap))
-            
-        embed_locks = discord.Embed(title="Primeval Island - Point store locks", description=stamp + "\nCapped species lock at capacity and reopen below cap.", color=discord.Color.orange(), timestamp=datetime.fromtimestamp(now, tz=timezone.utc))
-        embed_locks.add_field(name="Store status", value=("\n".join(lock_lines) or "No capped species configured.")[:1020], inline=False)
-        embed_locks.set_footer(text="Source: %s - refreshes every 2 minutes" % source)
-        async def upsert(channel_id, emb, cache_key):
-            ch = self.get_channel(channel_id)
-            if ch is None:
-                try: ch = await self.fetch_channel(channel_id)
-                except Exception as e: print("[TALLY] missing channel", channel_id, e); return
-            path = "primeval_tally.json"
-            state = {}
-            try:
-                with open(path, "r", encoding="utf-8") as f: state = _json.load(f) or {}
-            except Exception: state = {}
-            mid = int(state.get(cache_key) or 0)
-            msg = None
-            if mid:
-                try: msg = await ch.fetch_message(mid)
-                except Exception: msg = None
-            view = None
-            if cache_key == "locks_message_id":
-                try: import primeval_qol; view = primeval_qol.locks_wait_view()
-                except Exception: view = None
-            if msg is None:
-                msg = await ch.send(embed=emb, view=view)
-                state[cache_key] = msg.id
-            else:
-                await msg.edit(embed=emb, view=view)
-            try:
-                with open(path, "w", encoding="utf-8") as f:
-                    _json.dump(state, f, indent=2)
-                    f.write("\n")
-            except Exception as e: print("[TALLY] state save", e)
-        try: await upsert(1540827821067477064, embed, "tally_message_id")
-        except Exception as e: print("[TALLY] pop post", e)
-        try: await upsert(1541014100971360326, embed_locks, "locks_message_id")
-        except Exception as e: print("[TALLY] lock post", e)
-        
-        try:
-            ch = self.get_channel(1540827821067477064)
-            if ch is None: ch = await self.fetch_channel(1540827821067477064)
-            name = ("Players Online: %s" % online)[:100]
-            if ch and ch.name != name:
-                last = getattr(self, "_tally_last_rename", 0)
-                if now - last >= 600:
-                    await ch.edit(name=name)
-                    self._tally_last_rename = now
-        except Exception as e: print("[TALLY] rename", e)
-        
-        try:
-            import primeval_qol
-            path = "primeval_tally.json"
-            state = {}
-            try:
-                with open(path, "r", encoding="utf-8") as f: state = _json.load(f) or {}
-            except Exception: state = {}
-            state = await primeval_qol.on_census(self, counts, state) or state
-            with open(path, "w", encoding="utf-8") as f:
-                _json.dump(state, f, indent=2)
-                f.write("\n")
-        except Exception as e: print("[QOL] census", e)
-        print("[TALLY]", source, "online", online, "spawned", spawned, counts)
-
 bot = IsleShopBot()
 # ==========================================
 # ✨ NEW STAFF APPLICATION SLASH COMMAND
@@ -374,7 +242,7 @@ async def staffapp_error(interaction: discord.Interaction, error: app_commands.A
 # ==========================================
 RCON_IP = "38.133.189.10"
 RCON_PORT = 27562
-RCON_PASSWORD = "yXV38wwI"
+RCON_PASSWORD = os.environ.get("RCON_PASSWORD") or "yXV38wwI"
 BOT_RECEIVER_PORT = 8094
 
 SPECIES_CAPS = { "Tyrannosaurus": 12, "Triceratops": 18, "Deinosuchus": 20, "Stegosaurus": 22, "Diabloceratops": 30, "Allo": 30 }
@@ -561,7 +429,7 @@ async def send_game_command(command: str):
     opcode_map = { "announce": 0x10, "broadcast": 0x10, "directmessage": 0x11, "dm": 0x11, "serverdetails": 0x12, "wipecorpses": 0x13, "ban": 0x20, "kick": 0x30, "playerlist": 0x40, "save": 0x50, "pause": 0x60, "custom": 0x70, "getplayerdata": 0x77, "togglewhitelist": 0x81, "addwhitelist": 0x82, "removewhitelist": 0x83, "toggleglobalchat": 0x84, "toggleai": 0x90, "setgrowthmultiplier": 0x22 }
     if name in ("grow", "heal", "slay", "revive", "addadmin"):
         custom_result = await send_evrima_rcon(0x70, command)
-        steam_guess = rest.split(" ") if rest else ""
+        steam_guess = rest.split(" ")[0] if rest else ""
         if steam_guess.isdigit() and len(steam_guess) == 17:
             note = steam_guess + ",Primeval Island: your " + name + " request was received and is being processed."
             dm_result = await send_evrima_rcon(0x11, note)
@@ -572,17 +440,17 @@ async def send_game_command(command: str):
     payload = rest
     if name == "kick" and rest:
         bits = rest.split(" ", 1)
-        payload = bits if len(bits) == 1 else bits + "," + bits
+        payload = bits[0] if len(bits) == 1 else bits[0] + "," + bits[1]
     elif name == "ban" and rest:
         bits = rest.split(" ", 2)
-        steam = bits
-        duration = bits if len(bits) > 1 else "0"
-        reason = bits if len(bits) > 2 else "Banned by Discord admin"
+        steam = bits[0]
+        duration = bits[1] if len(bits) > 1 else "0"
+        reason = bits[2] if len(bits) > 2 else "Banned by Discord admin"
         seconds = await parse_ban_seconds(duration)
-        payload = steam + "," + reason + "," + str(seconds)
+        payload = steam + "," + steam + "," + reason + "," + str(seconds)  # Evrima ban: Name,SteamID,Reason,Duration
     elif name in ("directmessage", "dm") and rest:
         bits = rest.split(" ", 1)
-        payload = bits if len(bits) == 1 else bits + "," + bits
+        payload = bits[0] if len(bits) == 1 else bits[0] + "," + bits[1]
     print("[EVRIMA RCON]", name, hex(opcode), payload)
     return await send_evrima_rcon(opcode, payload)
 
@@ -609,7 +477,7 @@ class GrowDinoDropdown(Select):
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
         user_id = str(interaction.user.id)
-        species = self.values if self.values else ""
+        species = self.values[0] if self.values else ""
         if species.startswith("LOCKED_"):
             await interaction.followup.send("❌ This species is currently locked due to map capacity!", ephemeral=True); return
         tokens = 0
@@ -619,7 +487,7 @@ class GrowDinoDropdown(Select):
             with open('tokens.json', 'r') as f: token_db = json.load(f)
             steam_id = steam_db.get(user_id)
             if not steam_id:
-                await interaction.followup.send("❌ **Link Requirement Failed:** Your Discord account is not linked to a Steam ID!\nPlease run the `/link` command first.", ephemeral=True); return
+                await interaction.followup.send("❌ **Link Requirement Failed:** Your Discord account is not linked to a Steam ID!\nPlease run the `/link_steam` command first.", ephemeral=True); return
             steam_key = str(steam_id)
             if steam_key in token_db:
                 user_profile = token_db[steam_key]
@@ -635,13 +503,10 @@ class GrowDinoDropdown(Select):
         try:
             steam_key = str(steam_id)
             discord_key = str(user_id)
-            with open('tokens.json', 'r') as f: token_db = json.load(f)
-            if isinstance(token_db.get(steam_key), dict): token_db[steam_key]['tokens'] = tokens - cost
-            else: token_db[steam_key] = tokens - cost
-            if discord_key in token_db: del token_db[discord_key]
-            with open('tokens.json', 'w') as f: json.dump(token_db, f, indent=4)
-            try: save_tokens()
-            except Exception: pass
+            # Use the shared charge helper: the old direct write was immediately overwritten by
+            # save_tokens() dumping stale in-memory balances, so the charge was silently undone.
+            if charge_steam_tokens(steam_key, discord_key, cost) is None:
+                await interaction.followup.send("❌ Not enough tokens.", ephemeral=True); return
             asyncio.create_task(send_game_command(f"grow {steam_id}"))
             await interaction.followup.send(f"📈 **Growth Purchase Successful!** Spent {cost} tokens. Balance: {tokens - cost}.\nAccount Key: `{steam_id}`.\n\n⚠️ **CRITICAL REQUIREMENT:** You must be actively logged into the server as a juvenile **{species}** for the growth engine to apply!", ephemeral=True)
         except Exception as e:
@@ -664,7 +529,7 @@ class DinoPurchaseDropdown(Select):
             options.append(discord.SelectOption(label=f"{dino} (Tier {tier})", value=dino))
         super().__init__(placeholder="Choose a dinosaur species to buy...", min_values=1, max_values=1, options=options)
     async def callback(self, interaction: discord.Interaction):
-        species = self.values if self.values else ""
+        species = self.values[0] if self.values else ""
         if species.startswith("LOCKED_"):
             await interaction.response.send_message("🛑 **SOLD OUT:** Species cap met. Choose another dinosaur or try again later.", ephemeral=True); return
         steam_id = get_linked_steam_id(interaction.user.id)
@@ -850,7 +715,7 @@ async def isle_rcon(interaction: discord.Interaction):
 @bot.tree.command(name="isle_recon", description="Admin: Test Evrima RCON with serverdetails.")
 @app_commands.checks.has_permissions(administrator=True)
 async def isle_recon(interaction: discord.Interaction):
-    await isle_rcon(interaction)
+    await isle_rcon.callback(interaction)
 
 GAME_HOST_UUID = "09914030"
 GAME_HOST_URL = "https://bropanel.gamehostbros.com"

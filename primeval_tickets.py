@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import secrets
 import threading
 import time
 from datetime import timedelta
@@ -155,13 +156,23 @@ def _fn(name, default=None):
 
 def _load_state():
     with _STATE_LOCK:
+        # A transient read failure must not look like "no data": the next save
+        # would overwrite every case/profile with an empty file.
+        for attempt in range(3):
+            try:
+                with open(STATE_PATH, "r", encoding="utf-8") as handle:
+                    data = json.load(handle)
+                if isinstance(data, dict):
+                    data.setdefault("cases", {})
+                    data.setdefault("profiles", {})
+                    return data
+                break
+            except FileNotFoundError:
+                return {"cases": {}, "profiles": {}}
+            except Exception:
+                time.sleep(0.05)
         try:
-            with open(STATE_PATH, "r", encoding="utf-8") as handle:
-                data = json.load(handle)
-            if isinstance(data, dict):
-                data.setdefault("cases", {})
-                data.setdefault("profiles", {})
-                return data
+            os.replace(STATE_PATH, STATE_PATH + ".corrupt")
         except Exception:
             pass
         return {"cases": {}, "profiles": {}}
@@ -177,7 +188,18 @@ def _save_state(state):
 
 
 def _new_case_id():
-    return f"t{int(time.time()):x}"[-10:]
+    # Random suffix: two tickets in the same second used to share one ID and overwrite each other.
+    return f"t{int(time.time()):x}{secrets.token_hex(2)}"
+
+
+def _save_case(case):
+    """Persist one case on top of the freshest state (callers may have awaited since loading)."""
+    state = _load_state()
+    state.setdefault("cases", {})[case["id"]] = case
+    _save_state(state)
+
+
+_VERDICTS_INFLIGHT = set()
 
 
 def _steam_for(user_id):
@@ -863,7 +885,8 @@ class TicketControlView(ui.View):
         try:
             await channel.send("Ticket closed. Channel will be locked.")
             await channel.set_permissions(interaction.guild.default_role, view_channel=False)
-            await channel.edit(name=f"closed-{channel.name}"[:95])
+            if not channel.name.startswith("closed-"):
+                await channel.edit(name=f"closed-{channel.name}"[:95])
         except Exception:
             pass
         await interaction.followup.send("Closed.", ephemeral=True)
@@ -974,6 +997,8 @@ async def open_ticket(interaction, kind, details, accused=None, steam_manual="",
         await interaction.followup.send(f"Could not open a private ticket channel: {exc}", ephemeral=True)
         return
 
+    # State may have changed while the channel was being created; don't save a stale snapshot.
+    state = _load_state()
     case = {
         "id": case_id,
         "kind": kind,
@@ -1007,11 +1032,14 @@ async def open_ticket(interaction, kind, details, accused=None, steam_manual="",
     _save_state(state)
 
     history_lines = _case_history_lines(state, profile)
-    await channel.send(
-        content=f"{reporter.mention} — staff can see this channel. Do not ping everyone; wait here.",
-        embed=_ticket_embed(case),
-        view=TicketControlView(),
-    )
+    try:
+        await channel.send(
+            content=f"{reporter.mention} — staff can see this channel. Do not ping everyone; wait here.",
+            embed=_ticket_embed(case),
+            view=TicketControlView(),
+        )
+    except Exception:
+        pass
     verdict_channel = await _channel(interaction.client, VERDICT_CHANNEL_ID)
     if kind == KIND_ADMIN_ABUSE:
         claim_rule = "Senior Administration and Directors must claim this."
@@ -1069,15 +1097,18 @@ async def open_ticket(interaction, kind, details, accused=None, steam_manual="",
         if verdict_channel:
             try:
                 vmsg = await verdict_channel.send(
-                    content="Bug / bot ticket — mark resolved when done.",
+                    content=(
+                        "Select a verdict. No linked account was found for the reported party, so strikes cannot be recorded — recommend dismiss or resolve manually."
+                        if meta.get("track")
+                        else "Bug / bot ticket — mark resolved when done."
+                    ),
                     embed=_verdict_embed(case, profile),
                     view=_verdict_view(case_id, kind, case=case),
                 )
                 case["verdict_message_id"] = vmsg.id
             except Exception:
                 pass
-    state["cases"][case_id] = case
-    _save_state(state)
+    _save_case(case)
     await interaction.followup.send(f"Opened private ticket {channel.mention} (`{case_id}`).", ephemeral=True)
 
 
@@ -1478,6 +1509,9 @@ async def open_appeal_ticket(interaction, kind, origin_id, details):
     except Exception as exc:
         await interaction.followup.send(f"Could not open a private appeal channel: {exc}", ephemeral=True)
         return
+    # Reload: state may have changed while the channel was being created.
+    state = _load_state()
+    origin = (state.get("cases") or {}).get(origin_id) or origin
     accused_id = origin.get("accused_id") or str(reporter.id)
     accused_steam = origin.get("accused_steam") or _steam_for(reporter.id)
     case = {
@@ -1520,11 +1554,14 @@ async def open_appeal_ticket(interaction, kind, origin_id, details):
         if kind == KIND_ADMIN_ABUSE
         else "Administration or higher must claim this before a verdict."
     )
-    await channel.send(
-        content=f"{reporter.mention} — {claim_rule} Do not ping everyone; wait here.",
-        embed=_ticket_embed(case),
-        view=TicketControlView(),
-    )
+    try:
+        await channel.send(
+            content=f"{reporter.mention} — {claim_rule} Do not ping everyone; wait here.",
+            embed=_ticket_embed(case),
+            view=TicketControlView(),
+        )
+    except Exception:
+        pass
     if notify_channel:
         try:
             msg = await notify_channel.send(
@@ -1553,8 +1590,7 @@ async def open_appeal_ticket(interaction, kind, origin_id, details):
             case["verdict_message_id"] = vmsg.id
         except Exception:
             pass
-    state["cases"][case_id] = case
-    _save_state(state)
+    _save_case(case)
     await interaction.followup.send(f"Opened private appeal {channel.mention} (`{case_id}`).", ephemeral=True)
 
 
@@ -1660,7 +1696,8 @@ async def _lock_ticket_channel(channel, note):
         guild = getattr(channel, "guild", None)
         if guild is not None:
             await channel.set_permissions(guild.default_role, view_channel=False)
-        await channel.edit(name=f"closed-{channel.name}"[:95])
+        if not channel.name.startswith("closed-"):
+            await channel.edit(name=f"closed-{channel.name}"[:95])
     except Exception:
         pass
 
@@ -1750,6 +1787,18 @@ def _next_rank(have, need):
 
 
 async def handle_verdict(interaction, case_id, act):
+    # Two staff clicking at once would otherwise both pass the "no verdict yet" check and apply it twice.
+    if case_id in _VERDICTS_INFLIGHT:
+        await interaction.response.send_message("A verdict is already being applied to this case.", ephemeral=True)
+        return
+    _VERDICTS_INFLIGHT.add(case_id)
+    try:
+        await _handle_verdict_locked(interaction, case_id, act)
+    finally:
+        _VERDICTS_INFLIGHT.discard(case_id)
+
+
+async def _handle_verdict_locked(interaction, case_id, act):
     if not _staff_only(interaction):
         await interaction.response.send_message("Only staff can use the verdict panel.", ephemeral=True)
         return
@@ -1827,6 +1876,7 @@ async def handle_verdict(interaction, case_id, act):
     case["status"] = "closed"
     case["closed_at"] = int(time.time())
     case["applied_text"] = applied
+    state = _load_state()  # execute awaited; don't overwrite changes made meanwhile
     _write_profile(state, profile, case.get("accused_id") or None, case.get("accused_steam") or None)
     state["cases"][case_id] = case
     _save_state(state)
@@ -1855,8 +1905,7 @@ async def handle_verdict(interaction, case_id, act):
         try:
             msg = await log_channel.send(embed=_log_embed(case, profile, applied))
             case["log_message_id"] = msg.id
-            state["cases"][case_id] = case
-            _save_state(state)
+            _save_case(case)
         except Exception:
             pass
     await interaction.followup.send(f"Applied **{VERDICT_LABELS[act]}**. {applied}", ephemeral=True)
@@ -1962,6 +2011,7 @@ async def _handle_appeal_verdict(interaction, state, case, act):
         applied = await _undo_original_punishment(
             interaction.guild, origin, profile, staff=interaction.user, bot=interaction.client
         )
+        state = _load_state()  # undo awaited; start from fresh state before saving
         if origin.get("id"):
             origin["appeal_result"] = "grant"
             origin["open_appeal_id"] = None
@@ -2014,8 +2064,7 @@ async def _handle_appeal_verdict(interaction, state, case, act):
         try:
             msg = await log_channel.send(embed=_log_embed(case, profile, applied))
             case["log_message_id"] = msg.id
-            state["cases"][case["id"]] = case
-            _save_state(state)
+            _save_case(case)
         except Exception:
             pass
     await interaction.followup.send(f"Applied **{VERDICT_LABELS[act]}**. {applied}", ephemeral=True)
@@ -2424,7 +2473,14 @@ class AdminUndoModal(ui.Modal):
         # 4. Process Profile Metric Reductions
         steam_id = _steam_for(target_user_id)
         profile = _merged_profile(state, discord_id=target_user_id, steam=steam_id)
-        original_verdict = old_case.get("verdict", "")
+        original_verdict = str(old_case.get("verdict") or "")
+        # Only strike verdicts have strikes to remove; dismiss/resolve/uphold would wrongly decrement in-game strikes.
+        if not (original_verdict[:2] in ("ig", "dc") and original_verdict[2:].isdigit()):
+            await interaction.followup.send(
+                f"❌ Case `{case_id}` has no strike to undo (verdict: `{original_verdict or 'none'}`).",
+                ephemeral=True,
+            )
+            return
 
         # Decrement tracks safely based on the original mistake action framework type rules
         if original_verdict.startswith("dc"):
@@ -2458,10 +2514,6 @@ class AdminUndoModal(ui.Modal):
         profile.setdefault("history", []).append(new_case_id)
         state["cases"][new_case_id] = reversal_log
 
-        # Commit operations safely back down to flatfile memory structures on hosting loop
-        profile.setdefault("history", []).append(new_case_id)
-        state["cases"][new_case_id] = reversal_log
-
         _write_profile(state, profile, discord_id=target_user_id, steam=steam_id)
         _save_state(state)
 
@@ -2474,6 +2526,9 @@ class AdminUndoModal(ui.Modal):
                 await _game_unban(steam_id, reason_str, staff=interaction.user, bot=interaction.client)
             except Exception as e:
                 print(f"[PUNISH PANEL UNBAN EXCEPTION] Failed lifting in-game restriction: {e}")
+
+        if original_verdict == "dc3":
+            await _discord_unban(interaction.guild, target_user_id, f"Reversal_Of_Case_{case_id}")
 
         # 5. Broadcast Reversal Payload to Verdict Display Window Dashboards
         undo_embed = discord.Embed(

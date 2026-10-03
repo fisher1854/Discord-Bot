@@ -83,6 +83,7 @@ _BUNDLE_TOKEN: float | None = None
 _LAND_UVS: list[tuple[float, float]] | None = None
 _WATER_UVS: list[tuple[float, float]] | None = None
 _task = None
+_LAST_WRITTEN: dict[str, str] = {}
 
 
 def ecology_enabled(state: dict[str, Any] | None = None) -> bool:
@@ -315,7 +316,7 @@ def normalize_state(raw: dict[str, Any] | None) -> dict[str, Any]:
     enabled = bool(raw.get("enabled", True))
     sched_in = raw.get("scheduler") if isinstance(raw.get("scheduler"), dict) else {}
     try:
-        next_rotate = int(raw.get("scheduler", {}).get("nextRotateAt") or base["scheduler"]["nextRotateAt"])
+        next_rotate = int(sched_in.get("nextRotateAt") or base["scheduler"]["nextRotateAt"])
     except (TypeError, ValueError):
         next_rotate = base["scheduler"]["nextRotateAt"]
     try:
@@ -632,7 +633,9 @@ def load_state(*, use_fixture_if_empty: bool = False) -> dict[str, Any]:
 def save_state(state: dict[str, Any]) -> None:
     global _STATE, _STATE_MTIME
     normalized = normalize_state(state)
-    STATE_PATH.write_text(json.dumps(normalized, indent=2) + "\n", encoding="utf-8")
+    tmp = STATE_PATH.with_name(STATE_PATH.name + ".tmp")
+    tmp.write_text(json.dumps(normalized, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, STATE_PATH)
     _STATE = normalized
     try:
         _STATE_MTIME = STATE_PATH.stat().st_mtime
@@ -1059,12 +1062,23 @@ async def write_isle_ecology_files(
         }
 
         body = json.dumps(hardlocked_herd, indent=2) + "\n"
-        status, _text = await primeval_isle.write_file(AI_HERD_PATH, body)
-        herd_ok = status in (200, 204)
-        
+        # Skip identical rewrites: the Lua side may reload and re-arm spawn/cull logic.
+        if _LAST_WRITTEN.get(AI_HERD_PATH) == body:
+            herd_ok = True
+        else:
+            status, _text = await primeval_isle.write_file(AI_HERD_PATH, body)
+            herd_ok = status in (200, 204)
+            if herd_ok:
+                _LAST_WRITTEN[AI_HERD_PATH] = body
+
         body = json.dumps(hardlocked_forage, indent=2) + "\n"
-        status, _text = await primeval_isle.write_file(AI_FORAGE_PATH, body)
-        forage_ok = status in (200, 204)
+        if _LAST_WRITTEN.get(AI_FORAGE_PATH) == body:
+            forage_ok = True
+        else:
+            status, _text = await primeval_isle.write_file(AI_FORAGE_PATH, body)
+            forage_ok = status in (200, 204)
+            if forage_ok:
+                _LAST_WRITTEN[AI_FORAGE_PATH] = body
     except Exception as exc:
         print(f"[ECOLOGY] isle write failed: {exc}")
     return herd_ok, forage_ok
@@ -1073,10 +1087,10 @@ async def write_isle_ecology_files(
 async def tick(*, now: int | None = None, rng: random.Random | None = None) -> dict[str, Any]:
     """One ecology scheduler pass: census → demand → rotate → Isle files → save."""
     now = int(now if now is not None else time.time())
-    state = normalize_state(load_state())
     carni = await resolve_carnivore_count()
     calm = True # FIXED: Permanently clamp calm logic execution paths
 
+    state = normalize_state(load_state())
     enabled = bool(state.get("enabled", True))
     state = force_calm(state)
     state["enabled"] = enabled
@@ -1086,6 +1100,9 @@ async def tick(*, now: int | None = None, rng: random.Random | None = None) -> d
     forage_payload = build_forage_payload(state, calm=calm, now=now)
     await write_isle_ecology_files(herd_payload, forage_payload)
 
+    # Reload after the awaits so a concurrent state edit is not clobbered.
+    state = force_calm(normalize_state(load_state()))
+    state["enabled"] = enabled
     sched = dict(state.get("scheduler") or {})
     sched["lastTickAt"] = now
     sched["carnivores"] = carni

@@ -104,7 +104,7 @@ async def _post_remind(bot, state):
     await channel.send(
         ping
         + "Disboard is ready. Type **`/disboard bump`** in this channel.\n"
-        "I cannot bump for you — Disboard only counts a real person running that command."
+        "I cannot bump for you â€” Disboard only counts a real person running that command."
     )
     return True
 
@@ -179,7 +179,7 @@ def register_slash(bot):
         if left:
             when = f"ready <t:{int(time.time() + left)}:R>"
         elif float(state.get("last_bump_at") or 0) <= 0:
-            when = "no bump recorded yet — run `/disboard bump`"
+            when = "no bump recorded yet â€” run `/disboard bump`"
         else:
             when = "ready now"
         await interaction.response.send_message(
@@ -196,6 +196,12 @@ def start(bot):
 
     @tasks.loop(seconds=TICK_SECONDS)
     async def disboard_tick():
+        try:
+            await _disboard_once(bot)
+        except Exception as exc:
+            print(f"[DISBOARD] tick failed: {exc}")
+
+    async def _disboard_once(bot):
         state = _load()
         if not state.get("enabled") or not int(state.get("channel_id") or 0):
             return
@@ -211,6 +217,7 @@ def start(bot):
             print(f"[DISBOARD] remind failed: {exc}")
             return
         if sent:
+            state = _load()
             state["last_remind_at"] = now
             _save(state)
 

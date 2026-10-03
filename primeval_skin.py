@@ -358,7 +358,10 @@ async def _wait_skin_result(command_id, timeout=18):
     path = "/TheIsle/Binaries/Win64/ue4ss/Mods/PrimevalRedeem/Saved/results.ndjson"
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
-        status, raw = await primeval_isle.read_file(path)
+        try:
+            status, raw = await primeval_isle.read_file(path)
+        except Exception:
+            status, raw = 0, ""
         if status == 200:
             for line in reversed(str(raw or "").splitlines()):
                 if command_id not in line:
@@ -518,6 +521,9 @@ class SkinWizardView(ui.View):
 
     async def on_error(self, interaction, error, item):
         print(f"[SKIN] wizard {type(item).__name__}: {error}")
+        s = self.session()
+        if s is not None:
+            s.applying = False
         await _wizard_reply(interaction, "Skin step failed. Restart with `/skin`.")
 
 
@@ -895,21 +901,26 @@ class SkinAdminUnlockSelect(ui.Select):
             await interaction.response.send_message("No vault slots.", ephemeral=True)
             return
 
+        # The Isle confirmation wait can exceed Discord's 3s initial-response window.
+        await interaction.response.defer(ephemeral=True)
         cmd_id = f"skinunlock-{self.steam[-6:]}-{int(time.time() * 1000)}"
-        ok, msg = await _queue_skin_unlock(self.steam, slot, command_id=cmd_id)
+        try:
+            ok, msg = await _queue_skin_unlock(self.steam, slot, command_id=cmd_id)
+        except Exception as e:
+            ok, msg = False, str(e)
         if not ok:
-            await interaction.response.send_message(f"🛑 {msg}", ephemeral=True)
+            await interaction.followup.send(f"🛑 {msg}", ephemeral=True)
             return
 
         done, result = await _wait_skin_result(cmd_id, timeout=18.0)
         if done is False:
-            await interaction.response.send_message(f"🛑 {result or 'Isle rejected.'}", ephemeral=True)
+            await interaction.followup.send(f"🛑 {result or 'Isle rejected.'}", ephemeral=True)
             return
         if done is None:
-            await interaction.response.send_message("Submitted; confirmation timed out.", ephemeral=True)
+            await interaction.followup.send("Submitted; confirmation timed out.", ephemeral=True)
             return
 
-        await interaction.response.send_message(
+        await interaction.followup.send(
             f"✅ Unlocked `{slot}` for {self.member.mention}. Skin preserved; one repaint allowed.",
             ephemeral=True,
         )

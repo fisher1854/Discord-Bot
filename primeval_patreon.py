@@ -469,6 +469,12 @@ class PatreonLedgerButton(ui.DynamicItem[ui.Button], template=r"pi_pat:(?P<act>c
             if not row:
                 await interaction.followup.send("Ledger row missing.", ephemeral=True)
                 return
+            # stale buttons on an already-settled row must not re-credit it
+            if row.get("status") in ("credited", "skipped"):
+                await interaction.followup.send(
+                    f"`{self.ledger_id}` is already **{row.get('status')}**.", ephemeral=True
+                )
+                return
             row["staff_id"] = interaction.user.id
             if self.act == "skip":
                 row["status"] = "skipped"
@@ -625,6 +631,8 @@ async def _ingest_member_snapshot_unlocked(bot, snap, source, event=""):
     if row["status"] == "pending":
         await _try_credit_ledger(bot, state, row)
     state.setdefault("ledger", {})[row["id"]] = row
+    # persist right after crediting so a later failure cannot cause a re-credit
+    _save(state)
     await _post_ledger(bot, state, row)
     _save(state)
     return row
@@ -1072,12 +1080,13 @@ async def _sync_member_unlocked(bot, member, state, persist):
                 row["pending_topup"] = int(row.get("pending_topup") or 0) + int(pack["tokens"])
             else:
                 ok, bal = _credit(steam, int(pack["tokens"]), f"patreon {key}", member.id)
-                if ok:
-                    await _dm(
-                        bot,
-                        member.id,
-                        f"Token top-up: **{pack['tokens']}** tokens. Balance: **{bal}**.",
-                    )
+                if not ok:
+                    continue  # leave held unset so the credit is retried next sync
+                await _dm(
+                    bot,
+                    member.id,
+                    f"Token top-up: **{pack['tokens']}** tokens. Balance: **{bal}**.",
+                )
             held[key] = True
         elif not has_role:
             held[key] = False
@@ -1280,15 +1289,18 @@ def attach(bot):
         try:
             async with _STATE_LOCK:
                 state = _load()
-                for guild in bot.guilds:
-                    for member, steam in _linked_members(guild):
-                        await _grant_free_unlocked(bot, member, steam, state)
-                    for member in guild.members:
-                        if member.bot:
-                            continue
-                        if _active_tier_key(member) or any(_role_on(member, p["role"]) for p in TOPUPS.values()):
-                            await sync_member(bot, member, state=state)
-                _save(state)
+                try:
+                    for guild in bot.guilds:
+                        for member, steam in _linked_members(guild):
+                            await _grant_free_unlocked(bot, member, steam, state)
+                        for member in guild.members:
+                            if member.bot:
+                                continue
+                            if _active_tier_key(member) or any(_role_on(member, p["role"]) for p in TOPUPS.values()):
+                                await sync_member(bot, member, state=state)
+                finally:
+                    # always persist: tokens already credited in memory must not be re-granted next tick
+                    _save(state)
         except Exception as exc:
             print("[PATREON] tick failed", exc)
 
@@ -1385,9 +1397,10 @@ def register_slash(bot):
             if not interaction.channel:
                 await interaction.response.send_message("Use this in a staff channel.", ephemeral=True)
                 return
-            state = _load()
-            state.setdefault("settings", {})["log_channel_id"] = interaction.channel.id
-            _save(state)
+            async with _STATE_LOCK:
+                state = _load()
+                state.setdefault("settings", {})["log_channel_id"] = interaction.channel.id
+                _save(state)
             await interaction.response.send_message(
                 f"Patreon ledger will post here: {interaction.channel.mention}. "
                 "Every gift, declined charge, and unmatched amount gets a message with a ledger id.",

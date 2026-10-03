@@ -481,13 +481,18 @@ async def _announce(message):
 
 async def _warn_once(state, flag, message):
     """Fire an in-game warn at most once per flag. Persist only after a successful announce."""
-    if state.get(flag):
-        return False
-    ok = await _announce(message)
-    if ok:
-        state[flag] = True
-        _save_state(state)
-    return ok
+    async with _STATE_LOCK:
+        fresh = _load_state()
+        if fresh.get(flag):
+            state[flag] = True
+            return False
+        ok = await _announce(message)
+        if ok:
+            fresh = _load_state()
+            fresh[flag] = True
+            _save_state(fresh)
+            state[flag] = True
+        return ok
 
 
 _DIRECTOR_RESTART_LOCK = asyncio.Lock()
@@ -589,6 +594,7 @@ async def _fire_director_restart(state=None):
     state = dict(state or _load_state())
     now = time.time()
     stats = await fetch_isle_stats()
+    state = _load_state()
     name = str(stats.get("state") or "").strip().lower()
     state["director_restart_at"] = 0
     state["director_warned_5"] = False
@@ -651,6 +657,9 @@ async def director_restart():
             return False, f"Isle is **{name}**. Wait for it to settle, then try again."
         if name and name != "running":
             return False, f"Panel state is `{name or 'unknown'}`. Restart only runs while Isle is up."
+        state = _load_state()
+        if _director_due_at(state) > time.time():
+            return False, f"A Director restart is already scheduled <t:{int(_director_due_at(state))}:R>."
         due = now + DIRECTOR_LEAD_SECONDS
         state["director_restart_at"] = due
         state["director_warned_5"] = False
@@ -687,19 +696,35 @@ async def upsert_board(bot, embed, state=None):
     if message is None:
         message = await channel.send(embed=embed)
         state["board_message_id"] = message.id
-        _save_state(state)
+        fresh = _load_state()
+        fresh["board_message_id"] = message.id
+        _save_state(fresh)
     else:
         await message.edit(embed=embed)
     return state
 
 
+_TICK_LOCK = asyncio.Lock()
+_SHARED_KEYS = (
+    "warned_10", "warned_5", "warned_2", "restarting", "restart_sent_at",
+    "last_restart_http", "director_restart_at", "director_warned_5",
+    "director_warned_2", "board_message_id", "last_boot_at",
+)
+
+
 async def tick(bot):
-    state = _load_state()
+    async with _TICK_LOCK:
+        await _tick(bot)
+
+
+async def _tick(bot):
     stats = await fetch_isle_stats()
     players, _raw = await fetch_players()
+    state = _load_state()
     running = str(stats.get("state") or "") == "running"
     uptime_s = int((stats.get("uptime_ms") or 0) / 1000)
     state = _ensure_schedule(state, uptime_s, running)
+    _save_state(state)
     clock_left = max(0, int(float(state.get("next_restart_at") or 0) - time.time()))
     remaining = clock_left
     level = _level_for(stats, remaining, running)
@@ -707,8 +732,10 @@ async def tick(bot):
     if running and clock_left <= WARN_10 and not state.get("warned_10"):
         # Soft early heads-up; 5m + 2m last call are the required banners.
         if await _announce("Fallen Earth restart in 10 minutes. Finish fights and find a safe log-out."):
-            state["warned_10"] = True
-            _save_state(state)
+            fresh = _load_state()
+            fresh["warned_10"] = True
+            _save_state(fresh)
+            state = _load_state()
     if running and clock_left <= WARN_5:
         await _warn_once(state, "warned_5", MSG_WARN_5)
         state = _load_state()
@@ -720,6 +747,7 @@ async def tick(bot):
     dir_due = _director_due_at(state)
     dir_left = (dir_due - time.time()) if dir_due > 0 else 0
     if dir_due > 0:
+        _ensure_director_task()
         if running and dir_left <= DIRECTOR_WARN_2:
             await _warn_once(state, "director_warned_2", MSG_WARN_2)
             state = _load_state()
@@ -737,12 +765,15 @@ async def tick(bot):
         state["director_restart_at"] = 0
         _save_state(state)
         status, _body = await _restart_isle()
+        fresh = _load_state()
+        fresh["last_restart_http"] = status
+        _save_state(fresh)
         state["last_restart_http"] = status
-        _save_state(state)
     elif state.get("restarting") and running and uptime_s > 240:
         sent = float(state.get("restart_sent_at") or 0)
         if time.time() - sent > 180:
             state["restarting"] = False
+            _save_state(state)
 
     try:
         state = await _maybe_emergency(bot, stats, remaining, state)
@@ -765,6 +796,12 @@ async def tick(bot):
     except Exception as exc:
         print(f"[HEALTH BOARD] edit failed: {exc}")
     state["last_tick"] = time.time()
+    fresh = _load_state()
+    for key in _SHARED_KEYS:
+        if key in fresh:
+            state[key] = fresh[key]
+        else:
+            state.pop(key, None)
     _save_state(state)
 
 
@@ -812,5 +849,9 @@ def register_slash(bot):
             await interaction.response.send_message("Administrator+ can post the health board.", ephemeral=True)
             return
         await interaction.response.defer(ephemeral=True)
-        await tick(interaction.client)
+        try:
+            await tick(interaction.client)
+        except Exception as exc:
+            await interaction.followup.send(f"Health board refresh failed: {exc}", ephemeral=True)
+            return
         await interaction.followup.send(f"Health board refreshed in <#{HEALTH_CHANNEL_ID}>.", ephemeral=True)

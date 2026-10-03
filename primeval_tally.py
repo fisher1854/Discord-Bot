@@ -164,12 +164,20 @@ def _empty_counts():
 
 
 def _apply_counts(counts):
-    # Rebuild LIVE_HEADCOUNT from scratch each tick instead of mutating the
-    # old dict in place. The old code kept every key it had ever seen (only
-    # zeroing stale ones, never removing them), so any garbage species name
-    # that slipped in even once would persist and clutter the tally forever.
-    live = {name: int(counts.get(name, 0) or 0) for name in PLAYABLE_SPECIES}
-    G["LIVE_HEADCOUNT"] = live
+    # Rebuild from scratch each tick: only known species survive, so a
+    # garbage key can never persist. Mutate the existing dict in place
+    # (clear + refill) rather than binding a new object to G["LIVE_HEADCOUNT"],
+    # because Primeval_Island_Bot.py's own LIVE_HEADCOUNT global is the same
+    # dict object (handed in once via primeval_boot.attach_all/bind). Rebinding
+    # the key here would silently stop that shared reference from seeing
+    # updates, leaving the shop's species-cap checks reading stale/zeroed data.
+    live = G.get("LIVE_HEADCOUNT")
+    if not isinstance(live, dict):
+        live = {}
+        G["LIVE_HEADCOUNT"] = live
+    live.clear()
+    for name in PLAYABLE_SPECIES:
+        live[name] = int(counts.get(name, 0) or 0)
     return live
 
 

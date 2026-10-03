@@ -231,7 +231,7 @@ async def publish(channel, embed, content="", mention_here=False):
 async def publish_staff_post(channel, kind, title, body, author=None, guild=None, mention_here=False):
     guild = guild or getattr(channel, "guild", None) or getattr(author, "guild", None)
     linked = linkify_discord_refs(str(body or "").strip(), guild)
-    content, overflow = _split_content(linked)
+    content, overflow = _split_content(linked, _CONTENT_LIMIT - 8 if mention_here else _CONTENT_LIMIT)
     embed = build_post_embed(kind, title, overflow, author, guild)
     return await publish(channel, embed, content=content, mention_here=mention_here)
 
@@ -480,8 +480,11 @@ async def handle_relaunch(interaction: discord.Interaction):
                 ephemeral=True,
             )
             return
-        status, body = await _start_isle_host()
         _LAST_RELAUNCH_AT = now
+        try:
+            status, body = await _start_isle_host()
+        except Exception as exc:
+            status, body = 0, {"error": str(exc)}
         who = interaction.user.mention
         note = f"Panel replied `{status}` · was `{state}`"
         if status not in (200, 204):

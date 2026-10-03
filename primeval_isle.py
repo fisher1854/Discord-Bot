@@ -135,6 +135,9 @@ async def queue_inbox(payload):
     path = quote(INBOX_LEGACY)
     async with _WRITE_LOCK:
         status, existing = await request("GET", "/files/contents?file=" + path)
+        if status == 0 or status >= 500:
+            # unknown inbox contents: overwriting would drop unprocessed commands
+            return False, existing or f"read {status}"
         if status != 200 or not existing:
             existing = ""
         elif not isinstance(existing, str):

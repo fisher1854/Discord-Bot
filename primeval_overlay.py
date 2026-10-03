@@ -245,8 +245,11 @@ class SlidingRateLimiter:
 
     def allow(self, key: str, now: float | None = None) -> bool:
         now = time.monotonic() if now is None else now
-        bucket = self.events[str(key)]
         cutoff = now - self.window
+        if len(self.events) > 512:
+            for stale in [k for k, b in self.events.items() if not b or b[-1] <= cutoff]:
+                del self.events[stale]
+        bucket = self.events[str(key)]
         while bucket and bucket[0] <= cutoff:
             bucket.popleft()
         if len(bucket) >= self.limit:
