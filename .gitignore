@@ -1,0 +1,34 @@
+# --- Secrets / credentials: never commit these ---
+*.pem
+overlay_signing_secret.txt
+patreon_creator_token.txt
+tokens.txt
+.env
+
+# --- Runtime state & data files written by the bot while running ---
+# These change constantly and may contain player PII (Discord<->Steam
+# links, economy balances, case/ticket data). Keep them local only.
+steam_links.json
+tokens.json
+isle_health_board.json
+primeval_admin_audit.json
+primeval_cases.json
+primeval_disboard.json
+primeval_ecology_state.json
+primeval_events.json
+primeval_giveaway.json
+primeval_opening.json
+primeval_patreon.json
+primeval_progress.json
+primeval_tally.json
+primeval_tp.json
+primeval_trade.json
+primeval_voice.json
+primeval_vault_audit.json
+primeval_vault_audit.ndjson
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/

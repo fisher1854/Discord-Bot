@@ -1,0 +1,8 @@
+{
+  "PRIMEVAL_OVERLAY_HOST": "0.0.0.0",
+  "PRIMEVAL_OVERLAY_PORT": "25897",
+  "PRIMEVAL_OVERLAY_ORIGINS": "tauri://localhost,https://tauri.localhost",
+  "PRIMEVAL_OVERLAY_TLS_CERT": "overlay_tls_cert.pem",
+  "PRIMEVAL_OVERLAY_TLS_KEY": "overlay_tls_key.pem",
+  "PRIMEVAL_OVERLAY_PUBLIC_BASE": "https://136.0.251.18:25897"
+}

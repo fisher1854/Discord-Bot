@@ -1,0 +1,171 @@
+{
+  "playable": [
+    "Allo",
+    "Austroraptor",
+    "Beipiaosaurus",
+    "Carnotaurus",
+    "Ceratosaurus",
+    "Deinosuchus",
+    "Diabloceratops",
+    "Dilophosaurus",
+    "Dryosaurus",
+    "Galli",
+    "Herrerasaurus",
+    "Hypsilophodon",
+    "Kentrosaurus",
+    "Maiasaura",
+    "Omniraptor",
+    "Pachycephalosaurus",
+    "Pteranodon",
+    "Stegosaurus",
+    "Tenontosaurus",
+    "Triceratops",
+    "Troodon",
+    "Tyrannosaurus"
+  ],
+  "aliases": {
+    "tyrannosaurus": "Tyrannosaurus",
+    "trex": "Tyrannosaurus",
+    "triceratops": "Triceratops",
+    "deinosuchus": "Deinosuchus",
+    "deino": "Deinosuchus",
+    "stegosaurus": "Stegosaurus",
+    "diabloceratops": "Diabloceratops",
+    "diablo": "Diabloceratops",
+    "allosaurus": "Allo",
+    "allo": "Allo",
+    "herrerasaurus": "Herrerasaurus",
+    "hypsilophodon": "Hypsilophodon",
+    "dryosaurus": "Dryosaurus",
+    "gallimimus": "Galli",
+    "galli": "Galli",
+    "pachycephalosaurus": "Pachycephalosaurus",
+    "troodon": "Troodon",
+    "tenontosaurus": "Tenontosaurus",
+    "dilophosaurus": "Dilophosaurus",
+    "omniraptor": "Omniraptor",
+    "ceratosaurus": "Ceratosaurus",
+    "maiasaura": "Maiasaura",
+    "carnotaurus": "Carnotaurus",
+    "beipiaosaurus": "Beipiaosaurus",
+    "pteranodon": "Pteranodon",
+    "ptera": "Pteranodon",
+    "austroraptor": "Austroraptor",
+    "austro": "Austroraptor",
+    "kentrosaurus": "Kentrosaurus",
+    "kentro": "Kentrosaurus"
+  },
+  "herb": [
+    "hypsilophodon",
+    "dryosaurus",
+    "pachycephalosaurus",
+    "stegosaurus",
+    "triceratops",
+    "diabloceratops",
+    "tenontosaurus",
+    "maiasaura",
+    "kentrosaurus"
+  ],
+  "omni": [
+    "omniraptor",
+    "gallimimus",
+    "galli",
+    "beipiaosaurus",
+    "pteranodon"
+  ],
+  "small_prime": [
+    "Hypsilophodon",
+    "Troodon",
+    "Beipiaosaurus",
+    "Dryosaurus",
+    "Deinosuchus"
+  ],
+  "emoji": {
+    "Tyrannosaurus": "🦖",
+    "Allosaurus": "🦴",
+    "Allo": "🦴",
+    "Carnotaurus": "🔴",
+    "Ceratosaurus": "🟢",
+    "Dilophosaurus": "💜",
+    "Suchomimus": "🐊",
+    "Deinosuchus": "🐊",
+    "Triceratops": "🛡️",
+    "Stegosaurus": "🌿",
+    "Diabloceratops": "🦏",
+    "Pachycephalosaurus": "💥",
+    "Hypsilophodon": "🌱",
+    "Dryosaurus": "🍃",
+    "Gallimimus": "🐔",
+    "Galli": "🐔",
+    "Pteranodon": "🦅",
+    "Omniraptor": "🖤",
+    "Herrerasaurus": "🦎",
+    "Austroraptor": "🐟",
+    "Beipiaosaurus": "🪶",
+    "Kentrosaurus": "📌",
+    "Maiasaura": "🪿",
+    "Troodon": "🦷",
+    "Tenontosaurus": "🥬"
+  },
+  "mutations": {
+    "fname": {
+      "Enlarged Meniscus": "Enlarged meniscus",
+      "Hydro-regenerative": "Hydroregenerative"
+    },
+    "slot1": {
+      "all": [
+        "Cellular Regeneration",
+        "Congenital Hypoalgesia",
+        "Efficient Digestion",
+        "Enlarged Meniscus",
+        "Epidermal Fibrosis",
+        "Featherweight",
+        "Hydrodynamic",
+        "Hydro-regenerative",
+        "Increased Inspiratory Capacity",
+        "Infrasound Communication",
+        "Nocturnal",
+        "Osteosclerosis",
+        "Photosynthetic Tissue",
+        "Reabsorption",
+        "Submerged Optical Retention",
+        "Sustained Hydration",
+        "Wader"
+      ],
+      "carni": [
+        "Accelerated Prey Drive",
+        "Hematophagy",
+        "Hemomania"
+      ],
+      "herb": [
+        "Barometric Sensitivity",
+        "Hypervigilance",
+        "Photosynthetic Regeneration",
+        "Truculency",
+        "Xerocole Adaptation"
+      ],
+      "omni": [
+        "Social Behavior"
+      ]
+    },
+    "slot2_extra": {
+      "all": [
+        "Gastronomic Regeneration"
+      ],
+      "carni": [
+        "Hypermetabolic Inanition",
+        "Cannibalistic"
+      ],
+      "herb": [
+        "Tactile Endurance"
+      ],
+      "omni": []
+    },
+    "female": {
+      "slot1": [
+        "Advanced Gestation"
+      ],
+      "slot2": []
+    }
+  }
+}

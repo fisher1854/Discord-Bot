@@ -1,0 +1,5394 @@
+{
+  "schema": "primeval-overlay.pois",
+  "schemaVersion": 1,
+  "map": "Gateway_v0.21.7",
+  "gameBuild": "0.21.772",
+  "sourceUpdatedAt": "2026-08-09",
+  "calibration": {
+    "minX": -607000,
+    "maxX": 509000,
+    "minY": -505000,
+    "maxY": 607000,
+    "axisX": "H",
+    "unrealUnitsPerSimpleUnit": 1000
+  },
+  "counts": {
+    "gastroliths": 245,
+    "landmarks": 26,
+    "migrations": 12,
+    "patrol": 20,
+    "salt": 24,
+    "water": 27
+  },
+  "features": [
+    {
+      "id": "gastroliths-1",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -446000.0,
+      "y": 462000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-30"
+    },
+    {
+      "id": "gastroliths-10",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -350000.0,
+      "y": 356000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-11"
+    },
+    {
+      "id": "gastroliths-100",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -74000.0,
+      "y": 505000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-23"
+    },
+    {
+      "id": "gastroliths-101",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -73000.0,
+      "y": -139000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-23"
+    },
+    {
+      "id": "gastroliths-102",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -71000.0,
+      "y": 434000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-17"
+    },
+    {
+      "id": "gastroliths-103",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -69000.0,
+      "y": 2000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "gastroliths-104",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -64000.0,
+      "y": -167000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-30"
+    },
+    {
+      "id": "gastroliths-105",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -62000.0,
+      "y": 219000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21"
+    },
+    {
+      "id": "gastroliths-106",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -62000.0,
+      "y": 440000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-17"
+    },
+    {
+      "id": "gastroliths-107",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -61000.0,
+      "y": 173000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-23"
+    },
+    {
+      "id": "gastroliths-108",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -59000.0,
+      "y": 191000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-11-17"
+    },
+    {
+      "id": "gastroliths-109",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -58000.0,
+      "y": -98000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-27"
+    },
+    {
+      "id": "gastroliths-11",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -344000.0,
+      "y": 364000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-11"
+    },
+    {
+      "id": "gastroliths-110",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -55000.0,
+      "y": -93000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-27"
+    },
+    {
+      "id": "gastroliths-111",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -53000.0,
+      "y": 513000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-14"
+    },
+    {
+      "id": "gastroliths-112",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -51000.0,
+      "y": -159000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-30"
+    },
+    {
+      "id": "gastroliths-113",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -51000.0,
+      "y": 434000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-17"
+    },
+    {
+      "id": "gastroliths-114",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -48000.0,
+      "y": 198000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21"
+    },
+    {
+      "id": "gastroliths-115",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -48000.0,
+      "y": 454000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-01"
+    },
+    {
+      "id": "gastroliths-116",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -47000.0,
+      "y": 224000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-11-28"
+    },
+    {
+      "id": "gastroliths-117",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -36000.0,
+      "y": 430000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-21"
+    },
+    {
+      "id": "gastroliths-118",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -31000.0,
+      "y": 215000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-29"
+    },
+    {
+      "id": "gastroliths-119",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -28000.0,
+      "y": 492000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-05"
+    },
+    {
+      "id": "gastroliths-12",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -333000.0,
+      "y": 295000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-25"
+    },
+    {
+      "id": "gastroliths-120",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -27000.0,
+      "y": 226000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-29"
+    },
+    {
+      "id": "gastroliths-121",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -27000.0,
+      "y": 295000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-27"
+    },
+    {
+      "id": "gastroliths-122",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -24000.0,
+      "y": 137000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-19"
+    },
+    {
+      "id": "gastroliths-123",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -23000.0,
+      "y": 147000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-11-17"
+    },
+    {
+      "id": "gastroliths-124",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -22000.0,
+      "y": 525000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-18"
+    },
+    {
+      "id": "gastroliths-125",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -21000.0,
+      "y": 232000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-30"
+    },
+    {
+      "id": "gastroliths-126",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -19000.0,
+      "y": 241000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-26"
+    },
+    {
+      "id": "gastroliths-127",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -13000.0,
+      "y": 341000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-19",
+      "radiusX": 100.0,
+      "radiusY": 3000.0,
+      "rotation": 0.0
+    },
+    {
+      "id": "gastroliths-128",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -12000.0,
+      "y": 152000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-24"
+    },
+    {
+      "id": "gastroliths-129",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -9000.0,
+      "y": -361000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-23"
+    },
+    {
+      "id": "gastroliths-13",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -331000.0,
+      "y": 268000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-08"
+    },
+    {
+      "id": "gastroliths-130",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -8000.0,
+      "y": 195000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-27"
+    },
+    {
+      "id": "gastroliths-131",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -8000.0,
+      "y": 226000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-16"
+    },
+    {
+      "id": "gastroliths-132",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 0.0,
+      "y": 344000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-28"
+    },
+    {
+      "id": "gastroliths-133",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 1000.0,
+      "y": 428000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-26"
+    },
+    {
+      "id": "gastroliths-134",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 3000.0,
+      "y": -361000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-22"
+    },
+    {
+      "id": "gastroliths-135",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 5000.0,
+      "y": 135000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-04"
+    },
+    {
+      "id": "gastroliths-136",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 7000.0,
+      "y": 416000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-09"
+    },
+    {
+      "id": "gastroliths-137",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 8000.0,
+      "y": 215000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-27"
+    },
+    {
+      "id": "gastroliths-138",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 9000.0,
+      "y": -283000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-09"
+    },
+    {
+      "id": "gastroliths-139",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 10000.0,
+      "y": 208000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-27"
+    },
+    {
+      "id": "gastroliths-14",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -327000.0,
+      "y": 373000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-12",
+      "radiusX": 15000.0,
+      "radiusY": 15000.0,
+      "rotation": 45.0
+    },
+    {
+      "id": "gastroliths-140",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 11000.0,
+      "y": -270000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-31"
+    },
+    {
+      "id": "gastroliths-141",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 12000.0,
+      "y": 183000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-03-09"
+    },
+    {
+      "id": "gastroliths-142",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 13000.0,
+      "y": 275000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-11-20"
+    },
+    {
+      "id": "gastroliths-143",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 22000.0,
+      "y": -390000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-14"
+    },
+    {
+      "id": "gastroliths-144",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 38000.0,
+      "y": -57000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-14"
+    },
+    {
+      "id": "gastroliths-145",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 40000.0,
+      "y": 137000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-12"
+    },
+    {
+      "id": "gastroliths-146",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 42000.0,
+      "y": -66000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-14"
+    },
+    {
+      "id": "gastroliths-147",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 49000.0,
+      "y": 340000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-12"
+    },
+    {
+      "id": "gastroliths-148",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 57000.0,
+      "y": 145000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-19"
+    },
+    {
+      "id": "gastroliths-149",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 65000.0,
+      "y": 17000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-15"
+    },
+    {
+      "id": "gastroliths-15",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -318000.0,
+      "y": 248000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-11"
+    },
+    {
+      "id": "gastroliths-150",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 68000.0,
+      "y": 222000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-27"
+    },
+    {
+      "id": "gastroliths-151",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 70000.0,
+      "y": 230000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-27"
+    },
+    {
+      "id": "gastroliths-152",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 72000.0,
+      "y": 154000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-153",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 79000.0,
+      "y": 322000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-03"
+    },
+    {
+      "id": "gastroliths-154",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 80000.0,
+      "y": 147000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-28"
+    },
+    {
+      "id": "gastroliths-155",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 81000.0,
+      "y": 225000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-13"
+    },
+    {
+      "id": "gastroliths-156",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 83000.0,
+      "y": 184000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-157",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 86000.0,
+      "y": 310000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-23"
+    },
+    {
+      "id": "gastroliths-158",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 88000.0,
+      "y": 296000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-23"
+    },
+    {
+      "id": "gastroliths-159",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 92000.0,
+      "y": -281000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-10"
+    },
+    {
+      "id": "gastroliths-16",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -316000.0,
+      "y": 110000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-12"
+    },
+    {
+      "id": "gastroliths-160",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 97000.0,
+      "y": 162000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-10"
+    },
+    {
+      "id": "gastroliths-161",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 101000.0,
+      "y": 219000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-13"
+    },
+    {
+      "id": "gastroliths-162",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 101000.0,
+      "y": 251000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-09"
+    },
+    {
+      "id": "gastroliths-163",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 107000.0,
+      "y": 201000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-14"
+    },
+    {
+      "id": "gastroliths-164",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 115000.0,
+      "y": -279000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-25"
+    },
+    {
+      "id": "gastroliths-165",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 117000.0,
+      "y": -287000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-10"
+    },
+    {
+      "id": "gastroliths-166",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 122000.0,
+      "y": 237000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-06-29"
+    },
+    {
+      "id": "gastroliths-167",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 131000.0,
+      "y": -105000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-20"
+    },
+    {
+      "id": "gastroliths-168",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 145000.0,
+      "y": -296000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-31"
+    },
+    {
+      "id": "gastroliths-169",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 153000.0,
+      "y": 205000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-10",
+      "radiusX": 8000.0,
+      "radiusY": 16000.0,
+      "rotation": 0.0
+    },
+    {
+      "id": "gastroliths-17",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -316000.0,
+      "y": 312000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-11"
+    },
+    {
+      "id": "gastroliths-170",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 155000.0,
+      "y": -321000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-26"
+    },
+    {
+      "id": "gastroliths-171",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 164000.0,
+      "y": -386000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-05"
+    },
+    {
+      "id": "gastroliths-172",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 165000.0,
+      "y": -124000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-26"
+    },
+    {
+      "id": "gastroliths-173",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 168000.0,
+      "y": -368000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-06"
+    },
+    {
+      "id": "gastroliths-174",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 168000.0,
+      "y": -333000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-03"
+    },
+    {
+      "id": "gastroliths-175",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 171000.0,
+      "y": -321000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-18"
+    },
+    {
+      "id": "gastroliths-176",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 175000.0,
+      "y": 167000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-14"
+    },
+    {
+      "id": "gastroliths-177",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 176000.0,
+      "y": -393000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "gastroliths-178",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 177000.0,
+      "y": -203000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-29"
+    },
+    {
+      "id": "gastroliths-179",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 180000.0,
+      "y": -393000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "gastroliths-18",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -315000.0,
+      "y": 389000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-19"
+    },
+    {
+      "id": "gastroliths-180",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 182000.0,
+      "y": -393000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "gastroliths-181",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 182000.0,
+      "y": -272000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-24"
+    },
+    {
+      "id": "gastroliths-182",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 184000.0,
+      "y": 85000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-12"
+    },
+    {
+      "id": "gastroliths-183",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 184000.0,
+      "y": 127000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-23"
+    },
+    {
+      "id": "gastroliths-184",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 194000.0,
+      "y": -185000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-11"
+    },
+    {
+      "id": "gastroliths-185",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 198000.0,
+      "y": 53000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-12"
+    },
+    {
+      "id": "gastroliths-186",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 198000.0,
+      "y": 131000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-16"
+    },
+    {
+      "id": "gastroliths-187",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 199000.0,
+      "y": -126000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-20"
+    },
+    {
+      "id": "gastroliths-188",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 200000.0,
+      "y": -116000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-03"
+    },
+    {
+      "id": "gastroliths-189",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 215000.0,
+      "y": -259000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-08"
+    },
+    {
+      "id": "gastroliths-19",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -314000.0,
+      "y": 208000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-25"
+    },
+    {
+      "id": "gastroliths-190",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 216000.0,
+      "y": 57000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-26"
+    },
+    {
+      "id": "gastroliths-191",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 216000.0,
+      "y": 72000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-12"
+    },
+    {
+      "id": "gastroliths-192",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 221000.0,
+      "y": -396000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "gastroliths-193",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 223000.0,
+      "y": -288000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-17"
+    },
+    {
+      "id": "gastroliths-194",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 224000.0,
+      "y": -390000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-14"
+    },
+    {
+      "id": "gastroliths-195",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 224000.0,
+      "y": -163000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-08"
+    },
+    {
+      "id": "gastroliths-196",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 225000.0,
+      "y": -175000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-19"
+    },
+    {
+      "id": "gastroliths-197",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 232000.0,
+      "y": -172000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-14"
+    },
+    {
+      "id": "gastroliths-198",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 236000.0,
+      "y": 60000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-30"
+    },
+    {
+      "id": "gastroliths-199",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 239000.0,
+      "y": -397000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-08"
+    },
+    {
+      "id": "gastroliths-2",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -444000.0,
+      "y": 415000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-19"
+    },
+    {
+      "id": "gastroliths-20",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -308000.0,
+      "y": 203000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-25"
+    },
+    {
+      "id": "gastroliths-200",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 251000.0,
+      "y": -183000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-10"
+    },
+    {
+      "id": "gastroliths-201",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 253000.0,
+      "y": 116000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-20"
+    },
+    {
+      "id": "gastroliths-202",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 254000.0,
+      "y": -156000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-31"
+    },
+    {
+      "id": "gastroliths-203",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 255000.0,
+      "y": -395000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-08"
+    },
+    {
+      "id": "gastroliths-204",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 257000.0,
+      "y": 56000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-30"
+    },
+    {
+      "id": "gastroliths-205",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 262000.0,
+      "y": -187000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-10"
+    },
+    {
+      "id": "gastroliths-206",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 267000.0,
+      "y": -400000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-25"
+    },
+    {
+      "id": "gastroliths-207",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 272000.0,
+      "y": -65000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-15"
+    },
+    {
+      "id": "gastroliths-208",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 278000.0,
+      "y": -65000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-21"
+    },
+    {
+      "id": "gastroliths-209",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 279000.0,
+      "y": 104000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-09"
+    },
+    {
+      "id": "gastroliths-21",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -303000.0,
+      "y": 227000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-30"
+    },
+    {
+      "id": "gastroliths-210",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 285000.0,
+      "y": 30000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-06"
+    },
+    {
+      "id": "gastroliths-211",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 288000.0,
+      "y": 76000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-05"
+    },
+    {
+      "id": "gastroliths-212",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 293000.0,
+      "y": -400000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-08"
+    },
+    {
+      "id": "gastroliths-213",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 300000.0,
+      "y": 116000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-13"
+    },
+    {
+      "id": "gastroliths-214",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 301000.0,
+      "y": 41000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-27"
+    },
+    {
+      "id": "gastroliths-215",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 307000.0,
+      "y": -139000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-10"
+    },
+    {
+      "id": "gastroliths-216",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 317000.0,
+      "y": -114000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-25"
+    },
+    {
+      "id": "gastroliths-217",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 327000.0,
+      "y": -30000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "gastroliths-218",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 329000.0,
+      "y": -92000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-20"
+    },
+    {
+      "id": "gastroliths-219",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 329000.0,
+      "y": -31000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-17"
+    },
+    {
+      "id": "gastroliths-22",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -302000.0,
+      "y": 474000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27",
+      "radiusX": 10000.0,
+      "radiusY": 20000.0,
+      "rotation": -15.0
+    },
+    {
+      "id": "gastroliths-220",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 335000.0,
+      "y": -146000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-23"
+    },
+    {
+      "id": "gastroliths-221",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 336000.0,
+      "y": -81000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-30"
+    },
+    {
+      "id": "gastroliths-222",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 337000.0,
+      "y": -146000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-16"
+    },
+    {
+      "id": "gastroliths-223",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 338000.0,
+      "y": -46000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-04"
+    },
+    {
+      "id": "gastroliths-224",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 343000.0,
+      "y": 170000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-30"
+    },
+    {
+      "id": "gastroliths-225",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 347000.0,
+      "y": -363000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-19"
+    },
+    {
+      "id": "gastroliths-226",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 348000.0,
+      "y": -369000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-08"
+    },
+    {
+      "id": "gastroliths-227",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 348000.0,
+      "y": 177000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-30"
+    },
+    {
+      "id": "gastroliths-228",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 349000.0,
+      "y": 175000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-30"
+    },
+    {
+      "id": "gastroliths-229",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 350000.0,
+      "y": -178000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-10"
+    },
+    {
+      "id": "gastroliths-23",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -295000.0,
+      "y": 187000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-28"
+    },
+    {
+      "id": "gastroliths-230",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 350000.0,
+      "y": 166000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-10-30"
+    },
+    {
+      "id": "gastroliths-231",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 356000.0,
+      "y": 172000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-09"
+    },
+    {
+      "id": "gastroliths-232",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 364000.0,
+      "y": -330000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-19"
+    },
+    {
+      "id": "gastroliths-233",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 367000.0,
+      "y": -187000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-10"
+    },
+    {
+      "id": "gastroliths-234",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 369000.0,
+      "y": -200000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-20"
+    },
+    {
+      "id": "gastroliths-235",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 369000.0,
+      "y": 70000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-06-27"
+    },
+    {
+      "id": "gastroliths-236",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 370000.0,
+      "y": 111000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-06"
+    },
+    {
+      "id": "gastroliths-237",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 371000.0,
+      "y": -285000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-26"
+    },
+    {
+      "id": "gastroliths-238",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 374000.0,
+      "y": 29000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-16"
+    },
+    {
+      "id": "gastroliths-239",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 375000.0,
+      "y": 30000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-12"
+    },
+    {
+      "id": "gastroliths-24",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -290000.0,
+      "y": 490000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-06-28"
+    },
+    {
+      "id": "gastroliths-240",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 375000.0,
+      "y": 30000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-17"
+    },
+    {
+      "id": "gastroliths-241",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 384000.0,
+      "y": -221000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-16"
+    },
+    {
+      "id": "gastroliths-242",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 385000.0,
+      "y": -56000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-03-20",
+      "radiusX": 5000.0,
+      "radiusY": 15000.0,
+      "rotation": 15.0
+    },
+    {
+      "id": "gastroliths-243",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 394000.0,
+      "y": 87000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-06"
+    },
+    {
+      "id": "gastroliths-244",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 396000.0,
+      "y": -252000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-11"
+    },
+    {
+      "id": "gastroliths-245",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": 416000.0,
+      "y": -230000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-09"
+    },
+    {
+      "id": "gastroliths-25",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -289000.0,
+      "y": 84000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-13"
+    },
+    {
+      "id": "gastroliths-26",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -289000.0,
+      "y": 288000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-12",
+      "radiusX": 15000.0,
+      "radiusY": 20000.0,
+      "rotation": 45.0
+    },
+    {
+      "id": "gastroliths-27",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -288000.0,
+      "y": 61000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-28",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -288000.0,
+      "y": 201000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-25"
+    },
+    {
+      "id": "gastroliths-29",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -287000.0,
+      "y": 209000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-19"
+    },
+    {
+      "id": "gastroliths-3",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -432000.0,
+      "y": 430000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-11-17"
+    },
+    {
+      "id": "gastroliths-30",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -281000.0,
+      "y": 492000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-17"
+    },
+    {
+      "id": "gastroliths-31",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -280000.0,
+      "y": 185000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-16"
+    },
+    {
+      "id": "gastroliths-32",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -279000.0,
+      "y": 190000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-22"
+    },
+    {
+      "id": "gastroliths-33",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -276000.0,
+      "y": 193000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-25"
+    },
+    {
+      "id": "gastroliths-34",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -265000.0,
+      "y": 210000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-23"
+    },
+    {
+      "id": "gastroliths-35",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -252000.0,
+      "y": -116000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-30"
+    },
+    {
+      "id": "gastroliths-36",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -252000.0,
+      "y": 290000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-23"
+    },
+    {
+      "id": "gastroliths-37",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -249000.0,
+      "y": 544000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-01"
+    },
+    {
+      "id": "gastroliths-38",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -248000.0,
+      "y": 212000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-07"
+    },
+    {
+      "id": "gastroliths-39",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -241000.0,
+      "y": 116000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-10"
+    },
+    {
+      "id": "gastroliths-4",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -424000.0,
+      "y": 317000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-01"
+    },
+    {
+      "id": "gastroliths-40",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -238000.0,
+      "y": 494000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-09"
+    },
+    {
+      "id": "gastroliths-41",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -236000.0,
+      "y": 315000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-30"
+    },
+    {
+      "id": "gastroliths-42",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -234000.0,
+      "y": 54000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-23"
+    },
+    {
+      "id": "gastroliths-43",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -229000.0,
+      "y": 14000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-44",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -227000.0,
+      "y": 222000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-10"
+    },
+    {
+      "id": "gastroliths-45",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -225000.0,
+      "y": 131000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-04-21"
+    },
+    {
+      "id": "gastroliths-46",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -225000.0,
+      "y": 306000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-25"
+    },
+    {
+      "id": "gastroliths-47",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -224000.0,
+      "y": -14000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-48",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -220000.0,
+      "y": 540000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-11"
+    },
+    {
+      "id": "gastroliths-49",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -209000.0,
+      "y": 531000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-06-29"
+    },
+    {
+      "id": "gastroliths-5",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -392000.0,
+      "y": 319000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-24"
+    },
+    {
+      "id": "gastroliths-50",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -208000.0,
+      "y": -12000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-51",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -205000.0,
+      "y": 265000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21",
+      "radiusX": 25000.0,
+      "radiusY": 25000.0,
+      "rotation": 0.0
+    },
+    {
+      "id": "gastroliths-52",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -201000.0,
+      "y": -6000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-28"
+    },
+    {
+      "id": "gastroliths-53",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -199000.0,
+      "y": 509000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-01"
+    },
+    {
+      "id": "gastroliths-54",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -195000.0,
+      "y": 450000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-03"
+    },
+    {
+      "id": "gastroliths-55",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -184000.0,
+      "y": 330000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-23"
+    },
+    {
+      "id": "gastroliths-56",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -172000.0,
+      "y": 192000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-22"
+    },
+    {
+      "id": "gastroliths-57",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -172000.0,
+      "y": 427000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-11-24"
+    },
+    {
+      "id": "gastroliths-58",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -170000.0,
+      "y": 258000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-17"
+    },
+    {
+      "id": "gastroliths-59",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -170000.0,
+      "y": 340000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-23",
+      "radiusX": 5000.0,
+      "radiusY": 5000.0,
+      "rotation": 0.0
+    },
+    {
+      "id": "gastroliths-6",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -387000.0,
+      "y": 194000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-19"
+    },
+    {
+      "id": "gastroliths-60",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -168000.0,
+      "y": 178000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-31"
+    },
+    {
+      "id": "gastroliths-61",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -161000.0,
+      "y": 359000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-26"
+    },
+    {
+      "id": "gastroliths-62",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -156000.0,
+      "y": -39000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-17"
+    },
+    {
+      "id": "gastroliths-63",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -156000.0,
+      "y": 281000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-21"
+    },
+    {
+      "id": "gastroliths-64",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -155000.0,
+      "y": -56000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-11"
+    },
+    {
+      "id": "gastroliths-65",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -154000.0,
+      "y": 531000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-11"
+    },
+    {
+      "id": "gastroliths-66",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -153000.0,
+      "y": 295000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-21"
+    },
+    {
+      "id": "gastroliths-67",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -153000.0,
+      "y": 329000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-23",
+      "radiusX": 8000.0,
+      "radiusY": 2000.0,
+      "rotation": -50.0
+    },
+    {
+      "id": "gastroliths-68",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -150000.0,
+      "y": 448000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-05"
+    },
+    {
+      "id": "gastroliths-69",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -149000.0,
+      "y": -66000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-01"
+    },
+    {
+      "id": "gastroliths-7",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -385000.0,
+      "y": 328000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-13"
+    },
+    {
+      "id": "gastroliths-70",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -149000.0,
+      "y": 274000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-17"
+    },
+    {
+      "id": "gastroliths-71",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -149000.0,
+      "y": 467000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-24"
+    },
+    {
+      "id": "gastroliths-72",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -148000.0,
+      "y": -25000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-13"
+    },
+    {
+      "id": "gastroliths-73",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -146000.0,
+      "y": -14000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-13"
+    },
+    {
+      "id": "gastroliths-74",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -146000.0,
+      "y": 522000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-28"
+    },
+    {
+      "id": "gastroliths-75",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -142000.0,
+      "y": -10000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-13"
+    },
+    {
+      "id": "gastroliths-76",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -141000.0,
+      "y": -169000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-16"
+    },
+    {
+      "id": "gastroliths-77",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -138000.0,
+      "y": -8000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-13"
+    },
+    {
+      "id": "gastroliths-78",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -127000.0,
+      "y": -188000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-11"
+    },
+    {
+      "id": "gastroliths-79",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -124000.0,
+      "y": -12000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-13"
+    },
+    {
+      "id": "gastroliths-8",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -372000.0,
+      "y": 229000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-15"
+    },
+    {
+      "id": "gastroliths-80",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -124000.0,
+      "y": 4000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-26"
+    },
+    {
+      "id": "gastroliths-81",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -122000.0,
+      "y": 316000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-12"
+    },
+    {
+      "id": "gastroliths-82",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -120000.0,
+      "y": -46000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-25"
+    },
+    {
+      "id": "gastroliths-83",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -118000.0,
+      "y": -189000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-17"
+    },
+    {
+      "id": "gastroliths-84",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -114000.0,
+      "y": -60000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-09"
+    },
+    {
+      "id": "gastroliths-85",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -113000.0,
+      "y": -70000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-07-09"
+    },
+    {
+      "id": "gastroliths-86",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -112000.0,
+      "y": -27000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-12"
+    },
+    {
+      "id": "gastroliths-87",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -108000.0,
+      "y": 0.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-13"
+    },
+    {
+      "id": "gastroliths-88",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -107000.0,
+      "y": -229000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-03"
+    },
+    {
+      "id": "gastroliths-89",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -106000.0,
+      "y": -258000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21"
+    },
+    {
+      "id": "gastroliths-9",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -362000.0,
+      "y": 347000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-12"
+    },
+    {
+      "id": "gastroliths-90",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -106000.0,
+      "y": 511000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-08-20"
+    },
+    {
+      "id": "gastroliths-91",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -103000.0,
+      "y": 271000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-14"
+    },
+    {
+      "id": "gastroliths-92",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -102000.0,
+      "y": 310000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-09-21"
+    },
+    {
+      "id": "gastroliths-93",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -96000.0,
+      "y": 209000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21"
+    },
+    {
+      "id": "gastroliths-94",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -96000.0,
+      "y": 218000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21"
+    },
+    {
+      "id": "gastroliths-95",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -93000.0,
+      "y": -3000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-01-11"
+    },
+    {
+      "id": "gastroliths-96",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -92000.0,
+      "y": 249000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-07"
+    },
+    {
+      "id": "gastroliths-97",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -90000.0,
+      "y": 261000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-01",
+      "radiusX": 4000.0,
+      "radiusY": 2000.0,
+      "rotation": 0.0
+    },
+    {
+      "id": "gastroliths-98",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -85000.0,
+      "y": 261000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-01",
+      "radiusX": 10000.0,
+      "radiusY": 2000.0,
+      "rotation": 80.0
+    },
+    {
+      "id": "gastroliths-99",
+      "name": "Gastrolith",
+      "category": "gastroliths",
+      "x": -75000.0,
+      "y": -14000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-21"
+    },
+    {
+      "id": "landmarks-central-br-jungle-7",
+      "name": "Central<br>Jungle",
+      "category": "landmarks",
+      "x": -49000.0,
+      "y": 71000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-delta-1",
+      "name": "Delta",
+      "category": "landmarks",
+      "x": 33000.0,
+      "y": 177000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-delta-bay-2",
+      "name": "Delta Bay",
+      "category": "landmarks",
+      "x": 175000.0,
+      "y": 298000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-east-br-coast-3",
+      "name": "East<br>Coast",
+      "category": "landmarks",
+      "x": -131000.0,
+      "y": 564000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-eastern-br-jungle-4",
+      "name": "Eastern<br>Jungle",
+      "category": "landmarks",
+      "x": -157000.0,
+      "y": 398000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-forks-br-plains-5",
+      "name": "Forks<br>Plains",
+      "category": "landmarks",
+      "x": -119000.0,
+      "y": 246000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-highland-6",
+      "name": "Highland",
+      "category": "landmarks",
+      "x": -127000.0,
+      "y": -80000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-lagoon-8",
+      "name": "Lagoon",
+      "category": "landmarks",
+      "x": 334000.0,
+      "y": -87000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-ne-cape-10",
+      "name": "NE. Cape",
+      "category": "landmarks",
+      "x": -460000.0,
+      "y": 433000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-north-plains-12",
+      "name": "North Plains",
+      "category": "landmarks",
+      "x": -345000.0,
+      "y": 353000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-northern-beach-11",
+      "name": "Northern Beach",
+      "category": "landmarks",
+      "x": -379000.0,
+      "y": 114000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-northern-br-jungle-13",
+      "name": "Northern<bR>Jungle",
+      "category": "landmarks",
+      "x": -321000.0,
+      "y": 166000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-port-s-east-port-s-15",
+      "name": "Port<s>(East port)</s>",
+      "category": "landmarks",
+      "x": -308000.0,
+      "y": 548000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-rail-beach-16",
+      "name": "Rail Beach",
+      "category": "landmarks",
+      "x": 6000.0,
+      "y": -388000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-ridges-14",
+      "name": "Ridges",
+      "category": "landmarks",
+      "x": -248000.0,
+      "y": -153000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-sandbank-bay-17",
+      "name": "Sandbank Bay",
+      "category": "landmarks",
+      "x": 74000.0,
+      "y": 399000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-shallows-18",
+      "name": "Shallows",
+      "category": "landmarks",
+      "x": 270000.0,
+      "y": 225000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-south-plains-19",
+      "name": "South Plains",
+      "category": "landmarks",
+      "x": 250000.0,
+      "y": -302000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-southern-beach-20",
+      "name": "Southern Beach",
+      "category": "landmarks",
+      "x": 397000.0,
+      "y": 130000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-southern-strait-21",
+      "name": "Southern Strait",
+      "category": "landmarks",
+      "x": 238000.0,
+      "y": -211000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-spiky-isle-22",
+      "name": "Spiky Isle",
+      "category": "landmarks",
+      "x": -379000.0,
+      "y": -295000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-swamps-23",
+      "name": "Swamps",
+      "category": "landmarks",
+      "x": 273000.0,
+      "y": 74000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-the-pit-24",
+      "name": "The Pit",
+      "category": "landmarks",
+      "x": 329000.0,
+      "y": -394000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-water-br-access-26",
+      "name": "Water<br>Access",
+      "category": "landmarks",
+      "x": -214000.0,
+      "y": 87000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-west-bay-br-mudflats-9",
+      "name": "West Bay<br>(Mudflats)",
+      "category": "landmarks",
+      "x": 101000.0,
+      "y": -394000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "landmarks-west-rail-25",
+      "name": "West Rail",
+      "category": "landmarks",
+      "x": -4000.0,
+      "y": -238000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-delta-mmz",
+      "name": "Delta (MMZ)",
+      "category": "migrations",
+      "x": 12240.0,
+      "y": 210760.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -77000.0,
+              185000.0
+            ],
+            [
+              -97000.0,
+              220000.0
+            ],
+            [
+              -108000.0,
+              256000.0
+            ],
+            [
+              -101000.0,
+              264000.0
+            ],
+            [
+              -93000.0,
+              265000.0
+            ],
+            [
+              -85000.0,
+              261000.0
+            ],
+            [
+              -63000.0,
+              227000.0
+            ],
+            [
+              -32000.0,
+              192000.0
+            ],
+            [
+              -17000.0,
+              190000.0
+            ],
+            [
+              6000.0,
+              203000.0
+            ],
+            [
+              42000.0,
+              250000.0
+            ],
+            [
+              58000.0,
+              259000.0
+            ],
+            [
+              75000.0,
+              255000.0
+            ],
+            [
+              116000.0,
+              255000.0
+            ],
+            [
+              126000.0,
+              244000.0
+            ],
+            [
+              133000.0,
+              230000.0
+            ],
+            [
+              129000.0,
+              216000.0
+            ],
+            [
+              99000.0,
+              213000.0
+            ],
+            [
+              89000.0,
+              200000.0
+            ],
+            [
+              83000.0,
+              175000.0
+            ],
+            [
+              68000.0,
+              149000.0
+            ],
+            [
+              50000.0,
+              134000.0
+            ],
+            [
+              6000.0,
+              121000.0
+            ],
+            [
+              -24000.0,
+              120000.0
+            ],
+            [
+              -77000.0,
+              185000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-east-jungle",
+      "name": "East Jungle",
+      "category": "migrations",
+      "x": -30600.0,
+      "y": 281600.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -97000.0,
+              252000.0
+            ],
+            [
+              -97000.0,
+              326000.0
+            ],
+            [
+              69000.0,
+              326000.0
+            ],
+            [
+              69000.0,
+              252000.0
+            ],
+            [
+              -97000.0,
+              252000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-highland-mmz",
+      "name": "Highland (MMZ)",
+      "category": "migrations",
+      "x": -148263.16,
+      "y": -44526.32,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -233000.0,
+              0.0
+            ],
+            [
+              -230000.0,
+              25000.0
+            ],
+            [
+              -125000.0,
+              50000.0
+            ],
+            [
+              -69000.0,
+              25000.0
+            ],
+            [
+              -100000.0,
+              -19000.0
+            ],
+            [
+              -51000.0,
+              -103000.0
+            ],
+            [
+              14000.0,
+              -60000.0
+            ],
+            [
+              -11000.0,
+              -147000.0
+            ],
+            [
+              -89000.0,
+              -130000.0
+            ],
+            [
+              -124000.0,
+              -142000.0
+            ],
+            [
+              -172000.0,
+              -140000.0
+            ],
+            [
+              -225000.0,
+              -91000.0
+            ],
+            [
+              -236000.0,
+              -58000.0
+            ],
+            [
+              -182000.0,
+              -49000.0
+            ],
+            [
+              -165000.0,
+              -35000.0
+            ],
+            [
+              -181000.0,
+              13000.0
+            ],
+            [
+              -191000.0,
+              14000.0
+            ],
+            [
+              -214000.0,
+              1000.0
+            ],
+            [
+              -233000.0,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-lagoon",
+      "name": "Lagoon",
+      "category": "migrations",
+      "x": 353761.9,
+      "y": -112285.71,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              395000.0,
+              -181000.0
+            ],
+            [
+              391000.0,
+              -200000.0
+            ],
+            [
+              381000.0,
+              -211000.0
+            ],
+            [
+              338000.0,
+              -185000.0
+            ],
+            [
+              332000.0,
+              -177000.0
+            ],
+            [
+              307000.0,
+              -177000.0
+            ],
+            [
+              301000.0,
+              -171000.0
+            ],
+            [
+              301000.0,
+              -156000.0
+            ],
+            [
+              296000.0,
+              -150000.0
+            ],
+            [
+              296000.0,
+              -128000.0
+            ],
+            [
+              291000.0,
+              -101000.0
+            ],
+            [
+              326000.0,
+              -26000.0
+            ],
+            [
+              348000.0,
+              -4000.0
+            ],
+            [
+              400000.0,
+              11000.0
+            ],
+            [
+              420000.0,
+              9000.0
+            ],
+            [
+              405000.0,
+              -10000.0
+            ],
+            [
+              385000.0,
+              -22000.0
+            ],
+            [
+              381000.0,
+              -38000.0
+            ],
+            [
+              360000.0,
+              -111000.0
+            ],
+            [
+              380000.0,
+              -149000.0
+            ],
+            [
+              395000.0,
+              -181000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-mudflats",
+      "name": "Mudflats",
+      "category": "migrations",
+      "x": 154000.0,
+      "y": -290000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            154000.0,
+            -290000.0
+          ],
+          "radiusX": 65000.0,
+          "radiusY": 70000.0,
+          "rotation": 5.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-ne-cape",
+      "name": "NE Cape",
+      "category": "migrations",
+      "x": -484400.0,
+      "y": 426600.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -552000.0,
+              367000.0
+            ],
+            [
+              -552000.0,
+              516000.0
+            ],
+            [
+              -383000.0,
+              516000.0
+            ],
+            [
+              -383000.0,
+              367000.0
+            ],
+            [
+              -552000.0,
+              367000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-north-lake-mmz",
+      "name": "North Lake (MMZ)",
+      "category": "migrations",
+      "x": -358000.0,
+      "y": 354000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -358000.0,
+            354000.0
+          ],
+          "radiusX": 89000.0,
+          "radiusY": 85000.0,
+          "rotation": -35.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-northern-jungle",
+      "name": "Northern Jungle",
+      "category": "migrations",
+      "x": -336000.0,
+      "y": 180000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -336000.0,
+            180000.0
+          ],
+          "radiusX": 50000.0,
+          "radiusY": 65000.0,
+          "rotation": 13.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-south-plains-mmz",
+      "name": "South Plains (MMZ)",
+      "category": "migrations",
+      "x": 249933.33,
+      "y": -295733.33,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              200000.0,
+              -370000.0
+            ],
+            [
+              187000.0,
+              -346000.0
+            ],
+            [
+              185000.0,
+              -320000.0
+            ],
+            [
+              207000.0,
+              -307000.0
+            ],
+            [
+              230000.0,
+              -298000.0
+            ],
+            [
+              242000.0,
+              -276000.0
+            ],
+            [
+              236000.0,
+              -251000.0
+            ],
+            [
+              252000.0,
+              -231000.0
+            ],
+            [
+              296000.0,
+              -215000.0
+            ],
+            [
+              350000.0,
+              -203000.0
+            ],
+            [
+              364000.0,
+              -219000.0
+            ],
+            [
+              304000.0,
+              -316000.0
+            ],
+            [
+              270000.0,
+              -344000.0
+            ],
+            [
+              226000.0,
+              -370000.0
+            ],
+            [
+              200000.0,
+              -370000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-swamp",
+      "name": "Swamp",
+      "category": "migrations",
+      "x": 280600.0,
+      "y": 38000.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              227000.0,
+              -30000.0
+            ],
+            [
+              227000.0,
+              140000.0
+            ],
+            [
+              361000.0,
+              140000.0
+            ],
+            [
+              361000.0,
+              -30000.0
+            ],
+            [
+              227000.0,
+              -30000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-tide-beach",
+      "name": "Tide Beach",
+      "category": "migrations",
+      "x": -40000.0,
+      "y": 450000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -40000.0,
+            450000.0
+          ],
+          "radiusX": 60000.0,
+          "radiusY": 60000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "migrations-west-rail-access",
+      "name": "West Rail Access",
+      "category": "migrations",
+      "x": 31000.0,
+      "y": -227000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            31000.0,
+            -227000.0
+          ],
+          "radiusX": 85000.0,
+          "radiusY": 85000.0,
+          "rotation": 19.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-center-jungle",
+      "name": "Center Jungle",
+      "category": "patrol",
+      "x": -84000.0,
+      "y": 55400.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -104000.0,
+              46000.0
+            ],
+            [
+              -104000.0,
+              69000.0
+            ],
+            [
+              -54000.0,
+              69000.0
+            ],
+            [
+              -54000.0,
+              47000.0
+            ],
+            [
+              -104000.0,
+              46000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-delta",
+      "name": "Delta",
+      "category": "patrol",
+      "x": 13411.76,
+      "y": 173823.53,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -44000.0,
+            174000.0
+          ],
+          "radiusX": 14000.0,
+          "radiusY": 25000.0,
+          "rotation": 46.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            79000.0,
+            206000.0
+          ],
+          "radiusX": 15000.0,
+          "radiusY": 15000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -5000.0,
+              163000.0
+            ],
+            [
+              -6000.0,
+              185000.0
+            ],
+            [
+              32000.0,
+              188000.0
+            ],
+            [
+              33000.0,
+              166000.0
+            ],
+            [
+              -5000.0,
+              163000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              21000.0,
+              186000.0
+            ],
+            [
+              7000.0,
+              196000.0
+            ],
+            [
+              42000.0,
+              251000.0
+            ],
+            [
+              56000.0,
+              242000.0
+            ],
+            [
+              21000.0,
+              186000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -21000.0,
+              121000.0
+            ],
+            [
+              -22000.0,
+              140000.0
+            ],
+            [
+              30000.0,
+              143000.0
+            ],
+            [
+              31000.0,
+              124000.0
+            ],
+            [
+              -21000.0,
+              121000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-delta-river",
+      "name": "Delta River",
+      "category": "patrol",
+      "x": -111200.0,
+      "y": 296600.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -128000.0,
+              301000.0
+            ],
+            [
+              -110000.0,
+              318000.0
+            ],
+            [
+              -86000.0,
+              290000.0
+            ],
+            [
+              -104000.0,
+              273000.0
+            ],
+            [
+              -128000.0,
+              301000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-east-coast",
+      "name": "East Coast",
+      "category": "patrol",
+      "x": -126000.0,
+      "y": 521500.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -162000.0,
+            540000.0
+          ],
+          "radiusX": 28000.0,
+          "radiusY": 28000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -90000.0,
+            503000.0
+          ],
+          "radiusX": 25000.0,
+          "radiusY": 28000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-fork-plains",
+      "name": "Fork Plains",
+      "category": "patrol",
+      "x": -134727.27,
+      "y": 236181.82,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -201000.0,
+              256000.0
+            ],
+            [
+              -201000.0,
+              298000.0
+            ],
+            [
+              -161000.0,
+              298000.0
+            ],
+            [
+              -161000.0,
+              256000.0
+            ],
+            [
+              -201000.0,
+              256000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -119000.0,
+              191000.0
+            ],
+            [
+              -119000.0,
+              222000.0
+            ],
+            [
+              -70000.0,
+              223000.0
+            ],
+            [
+              -66000.0,
+              214000.0
+            ],
+            [
+              -64000.0,
+              193000.0
+            ],
+            [
+              -119000.0,
+              191000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-highlands",
+      "name": "Highlands",
+      "category": "patrol",
+      "x": -150375.0,
+      "y": -64125.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -163000.0,
+            -7000.0
+          ],
+          "radiusX": 15000.0,
+          "radiusY": 15000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -182000.0,
+              -53000.0
+            ],
+            [
+              -162000.0,
+              -36000.0
+            ],
+            [
+              -149000.0,
+              -51000.0
+            ],
+            [
+              -170000.0,
+              -69000.0
+            ],
+            [
+              -182000.0,
+              -53000.0
+            ]
+          ]
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -143000.0,
+            -112000.0
+          ],
+          "radiusX": 13000.0,
+          "radiusY": 13000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -52000.0,
+            -132000.0
+          ],
+          "radiusX": 13000.0,
+          "radiusY": 13000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-mudflats",
+      "name": "Mudflats",
+      "category": "patrol",
+      "x": 146000.0,
+      "y": -295000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            146000.0,
+            -295000.0
+          ],
+          "radiusX": 15000.0,
+          "radiusY": 15000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-ne-cape",
+      "name": "NE Cape",
+      "category": "patrol",
+      "x": -475200.0,
+      "y": 436600.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -515000.0,
+              436000.0
+            ],
+            [
+              -508000.0,
+              463000.0
+            ],
+            [
+              -414000.0,
+              438000.0
+            ],
+            [
+              -424000.0,
+              410000.0
+            ],
+            [
+              -515000.0,
+              436000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-ne-cape-2",
+      "name": "NE Cape-2",
+      "category": "patrol",
+      "x": -453500.0,
+      "y": 437500.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -475000.0,
+            418000.0
+          ],
+          "radiusX": 20000.0,
+          "radiusY": 20000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -432000.0,
+            457000.0
+          ],
+          "radiusX": 22000.0,
+          "radiusY": 22000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-north-plains",
+      "name": "North Plains",
+      "category": "patrol",
+      "x": -399111.11,
+      "y": 282444.44,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -458000.0,
+            291000.0
+          ],
+          "radiusX": 12000.0,
+          "radiusY": 12000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -344000.0,
+            344000.0
+          ],
+          "radiusX": 12000.0,
+          "radiusY": 12000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -314000.0,
+            363000.0
+          ],
+          "radiusX": 12000.0,
+          "radiusY": 12000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -430000.0,
+              237000.0
+            ],
+            [
+              -430000.0,
+              279000.0
+            ],
+            [
+              -398000.0,
+              280000.0
+            ],
+            [
+              -394000.0,
+              274000.0
+            ],
+            [
+              -394000.0,
+              237000.0
+            ],
+            [
+              -430000.0,
+              237000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-northern-jungle",
+      "name": "Northern Jungle",
+      "category": "patrol",
+      "x": -310900.0,
+      "y": 123400.0,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -349000.0,
+              106000.0
+            ],
+            [
+              -349000.0,
+              147000.0
+            ],
+            [
+              -311000.0,
+              147000.0
+            ],
+            [
+              -311000.0,
+              106000.0
+            ],
+            [
+              -349000.0,
+              106000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -304000.0,
+              108000.0
+            ],
+            [
+              -304000.0,
+              149000.0
+            ],
+            [
+              -264000.0,
+              149000.0
+            ],
+            [
+              -264000.0,
+              108000.0
+            ],
+            [
+              -304000.0,
+              108000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-pits",
+      "name": "Pits",
+      "category": "patrol",
+      "x": 295545.45,
+      "y": -307454.55,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            182000.0,
+            -367000.0
+          ],
+          "radiusX": 20000.0,
+          "radiusY": 20000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            213000.0,
+            -348000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            235000.0,
+            -316000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            254000.0,
+            -261000.0
+          ],
+          "radiusX": 21000.0,
+          "radiusY": 21000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            288000.0,
+            -279000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            284000.0,
+            -225000.0
+          ],
+          "radiusX": 21000.0,
+          "radiusY": 21000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            349000.0,
+            -250000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            406000.0,
+            -239000.0
+          ],
+          "radiusX": 23000.0,
+          "radiusY": 23000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            348000.0,
+            -289000.0
+          ],
+          "radiusX": 18000.0,
+          "radiusY": 14000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            372000.0,
+            -365000.0
+          ],
+          "radiusX": 23000.0,
+          "radiusY": 23000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            320000.0,
+            -443000.0
+          ],
+          "radiusX": 23000.0,
+          "radiusY": 23000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-port-hill",
+      "name": "Port hill",
+      "category": "patrol",
+      "x": -304000.0,
+      "y": 440000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -304000.0,
+            440000.0
+          ],
+          "radiusX": 11000.0,
+          "radiusY": 11000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-radio-tower",
+      "name": "Radio Tower",
+      "category": "patrol",
+      "x": -207000.0,
+      "y": 530000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            -207000.0,
+            530000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-sandbank-bay",
+      "name": "Sandbank Bay",
+      "category": "patrol",
+      "x": 17866.67,
+      "y": 357266.67,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -18000.0,
+              378000.0
+            ],
+            [
+              -2000.0,
+              434000.0
+            ],
+            [
+              15000.0,
+              430000.0
+            ],
+            [
+              0.0,
+              374000.0
+            ],
+            [
+              -18000.0,
+              378000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -20000.0,
+              332000.0
+            ],
+            [
+              -23000.0,
+              351000.0
+            ],
+            [
+              36000.0,
+              360000.0
+            ],
+            [
+              39000.0,
+              341000.0
+            ],
+            [
+              -20000.0,
+              332000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              30000.0,
+              337000.0
+            ],
+            [
+              42000.0,
+              354000.0
+            ],
+            [
+              95000.0,
+              319000.0
+            ],
+            [
+              82000.0,
+              302000.0
+            ],
+            [
+              30000.0,
+              337000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-south-plains",
+      "name": "South Plains",
+      "category": "patrol",
+      "x": 210000.0,
+      "y": -223500.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            153000.0,
+            -252000.0
+          ],
+          "radiusX": 20000.0,
+          "radiusY": 20000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            267000.0,
+            -195000.0
+          ],
+          "radiusX": 21000.0,
+          "radiusY": 21000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-southern-beach",
+      "name": "Southern Beach",
+      "category": "patrol",
+      "x": 362454.55,
+      "y": -23818.18,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            310000.0,
+            -95000.0
+          ],
+          "radiusX": 23000.0,
+          "radiusY": 23000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              334000.0,
+              3000.0
+            ],
+            [
+              369000.0,
+              40000.0
+            ],
+            [
+              392000.0,
+              16000.0
+            ],
+            [
+              357000.0,
+              -21000.0
+            ],
+            [
+              334000.0,
+              3000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              345000.0,
+              -63000.0
+            ],
+            [
+              403000.0,
+              12000.0
+            ],
+            [
+              429000.0,
+              -10000.0
+            ],
+            [
+              369000.0,
+              -84000.0
+            ],
+            [
+              345000.0,
+              -63000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-swamps",
+      "name": "Swamps",
+      "category": "patrol",
+      "x": 248000.0,
+      "y": 57466.67,
+      "geometries": [
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              189000.0,
+              125000.0
+            ],
+            [
+              189000.0,
+              161000.0
+            ],
+            [
+              241000.0,
+              161000.0
+            ],
+            [
+              241000.0,
+              124000.0
+            ],
+            [
+              189000.0,
+              124000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              208000.0,
+              40000.0
+            ],
+            [
+              208000.0,
+              74000.0
+            ],
+            [
+              261000.0,
+              74000.0
+            ],
+            [
+              261000.0,
+              40000.0
+            ],
+            [
+              208000.0,
+              40000.0
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              291000.0,
+              -41000.0
+            ],
+            [
+              291000.0,
+              11000.0
+            ],
+            [
+              326000.0,
+              11000.0
+            ],
+            [
+              326000.0,
+              -41000.0
+            ],
+            [
+              291000.0,
+              -41000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-swamps-q",
+      "name": "Swamps-q",
+      "category": "patrol",
+      "x": 291500.0,
+      "y": 46000.0,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            247000.0,
+            6000.0
+          ],
+          "radiusX": 25000.0,
+          "radiusY": 25000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            304000.0,
+            10000.0
+          ],
+          "radiusX": 21000.0,
+          "radiusY": 21000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            322000.0,
+            54000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            293000.0,
+            114000.0
+          ],
+          "radiusX": 29000.0,
+          "radiusY": 29000.0,
+          "rotation": 0.0
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "patrol-west-rail",
+      "name": "West Rail",
+      "category": "patrol",
+      "x": -13333.33,
+      "y": -325444.44,
+      "geometries": [
+        {
+          "type": "ellipse",
+          "center": [
+            25000.0,
+            -323000.0
+          ],
+          "radiusX": 20000.0,
+          "radiusY": 20000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            -12000.0,
+            -287000.0
+          ],
+          "radiusX": 20000.0,
+          "radiusY": 20000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            26000.0,
+            -248000.0
+          ],
+          "radiusX": 16000.0,
+          "radiusY": 16000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "ellipse",
+          "center": [
+            6000.0,
+            -226000.0
+          ],
+          "radiusX": 17000.0,
+          "radiusY": 17000.0,
+          "rotation": 0.0
+        },
+        {
+          "type": "polygon",
+          "coordinates": [
+            [
+              -65000.0,
+              -385000.0
+            ],
+            [
+              -65000.0,
+              -345000.0
+            ],
+            [
+              15000.0,
+              -345000.0
+            ],
+            [
+              15000.0,
+              -385000.0
+            ],
+            [
+              -65000.0,
+              -385000.0
+            ]
+          ]
+        }
+      ],
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "salt-1",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -493000.0,
+      "y": 468000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-19"
+    },
+    {
+      "id": "salt-10",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -145000.0,
+      "y": 319000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "salt-11",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -114000.0,
+      "y": -153000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-02"
+    },
+    {
+      "id": "salt-12",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -61000.0,
+      "y": -21000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-30"
+    },
+    {
+      "id": "salt-13",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -55000.0,
+      "y": 160000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-02"
+    },
+    {
+      "id": "salt-14",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -51000.0,
+      "y": 457000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-01"
+    },
+    {
+      "id": "salt-15",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -25000.0,
+      "y": -302000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-09"
+    },
+    {
+      "id": "salt-16",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 40000.0,
+      "y": -91000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-05-10"
+    },
+    {
+      "id": "salt-17",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 59000.0,
+      "y": 278000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-27"
+    },
+    {
+      "id": "salt-18",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 73697.084,
+      "y": 55659.284,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-12-14"
+    },
+    {
+      "id": "salt-19",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 125000.0,
+      "y": -179000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-06-06"
+    },
+    {
+      "id": "salt-2",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -438000.0,
+      "y": 230000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-06-12"
+    },
+    {
+      "id": "salt-20",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 126000.0,
+      "y": -285000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-12-17"
+    },
+    {
+      "id": "salt-21",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 141000.0,
+      "y": 384000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-30"
+    },
+    {
+      "id": "salt-22",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 178000.0,
+      "y": 122000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2025-07-17"
+    },
+    {
+      "id": "salt-23",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 252000.0,
+      "y": -158000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-03-26"
+    },
+    {
+      "id": "salt-24",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": 288000.0,
+      "y": 13000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-12-17"
+    },
+    {
+      "id": "salt-3",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -325000.0,
+      "y": 234000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-02"
+    },
+    {
+      "id": "salt-4",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -323000.0,
+      "y": 238000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-02-07"
+    },
+    {
+      "id": "salt-5",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -270000.0,
+      "y": 366000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-30"
+    },
+    {
+      "id": "salt-6",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -252000.0,
+      "y": 543000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-12-14"
+    },
+    {
+      "id": "salt-7",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -234000.0,
+      "y": 52000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-02"
+    },
+    {
+      "id": "salt-8",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -205000.0,
+      "y": 421000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-02"
+    },
+    {
+      "id": "salt-9",
+      "name": "Salt Rock",
+      "category": "salt",
+      "x": -180000.0,
+      "y": 157000.0,
+      "confidence": "observed",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_2",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2024-11-30"
+    },
+    {
+      "id": "water-cascades-1",
+      "name": "Cascades",
+      "category": "water",
+      "x": -171000.0,
+      "y": 175000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-coastal-br-pond-2",
+      "name": "Coastal<Br>Pond",
+      "category": "water",
+      "x": 50000.0,
+      "y": 330000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-dam-br-lake-3",
+      "name": "Dam<br>Lake",
+      "category": "water",
+      "x": -267000.0,
+      "y": 79000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-delta-4",
+      "name": "Delta",
+      "category": "water",
+      "x": 43000.0,
+      "y": 189000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-delta-river-5",
+      "name": "Delta River",
+      "category": "water",
+      "x": -88000.0,
+      "y": 237000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-east-br-lake-6",
+      "name": "East<br>Lake",
+      "category": "water",
+      "x": -137000.0,
+      "y": 460000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-endorheic-19",
+      "name": "Endorheic",
+      "category": "water",
+      "x": 199000.0,
+      "y": 179000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-forks-br-pond-7",
+      "name": "Forks<br>Pond",
+      "category": "water",
+      "x": -171000.0,
+      "y": 246000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-gorge-br-river-8",
+      "name": "Gorge<br>River",
+      "category": "water",
+      "x": 135000.0,
+      "y": -198000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-highland-lake-s-north-side-s-9",
+      "name": "Highland Lake<s>(north side)</s>",
+      "category": "water",
+      "x": -135000.0,
+      "y": -22000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-highland-lake-s-south-side-s-10",
+      "name": "Highland Lake<s>(south side)</s>",
+      "category": "water",
+      "x": -92000.0,
+      "y": -65000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-hollow-br-falls-11",
+      "name": "Hollow<br>Falls",
+      "category": "water",
+      "x": -171000.0,
+      "y": 344000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-jungle-pond-12",
+      "name": "Jungle Pond",
+      "category": "water",
+      "x": -2000.0,
+      "y": 82000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-landslid-lake-13",
+      "name": "Landslid Lake",
+      "category": "water",
+      "x": -80000.0,
+      "y": -226000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-north-br-lake-14",
+      "name": "North<br>Lake",
+      "category": "water",
+      "x": -374000.0,
+      "y": 324000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-pit-pond-15",
+      "name": "Pit Pond",
+      "category": "water",
+      "x": 281000.0,
+      "y": -332000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-plains-br-river-16",
+      "name": "Plains<br>River",
+      "category": "water",
+      "x": -290000.0,
+      "y": 368000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-pygmy-s-puddle-17",
+      "name": "Pygmy's puddle",
+      "category": "water",
+      "x": 82000.0,
+      "y": -244000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-rock-pond-18",
+      "name": "Rock Pond",
+      "category": "water",
+      "x": 319000.0,
+      "y": -252000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-shade-puddle-27",
+      "name": "Shade puddle",
+      "category": "water",
+      "x": 90000.0,
+      "y": -128000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-south-puddle-20",
+      "name": "South Puddle",
+      "category": "water",
+      "x": 200000.0,
+      "y": -352000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-swamp-br-east-21",
+      "name": "Swamp<br>East",
+      "category": "water",
+      "x": 254000.0,
+      "y": 106000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-swamp-br-west-22",
+      "name": "Swamp<br>West",
+      "category": "water",
+      "x": 276000.0,
+      "y": -30000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-verdant-br-pond-23",
+      "name": "Verdant<br>Pond",
+      "category": "water",
+      "x": -276000.0,
+      "y": 156000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-volcano-br-chamber-25",
+      "name": "Volcano<br>Chamber",
+      "category": "water",
+      "x": -283000.0,
+      "y": 256000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-volcano-cave-24",
+      "name": "Volcano Cave",
+      "category": "water",
+      "x": -258000.0,
+      "y": 285000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    },
+    {
+      "id": "water-west-pond-26",
+      "name": "West Pond",
+      "category": "water",
+      "x": 20000.0,
+      "y": -277000.0,
+      "confidence": "community-verified",
+      "source": "VulnonaMAP:Gateway_v0.21.7:data_1",
+      "verifiedBuild": "0.21.772",
+      "updatedAt": "2026-08-09"
+    }
+  ],
+  "provenance": {
+    "source": "VulnonaMAP",
+    "author": "Coco.N / Ciro",
+    "home": "https://vulnona.com/game/map/",
+    "feeds": [
+      "https://vulnona.com/game/map/map/Gateway_v0.21.7/data_1.txt",
+      "https://vulnona.com/game/map/map/Gateway_v0.21.7/data_2.txt"
+    ],
+    "note": "Factual coordinates and labels imported with attribution; no basemap imagery or upstream application code is distributed."
+  }
+}
